@@ -116,7 +116,7 @@ const App: React.FC = () => {
         </div>
 
         <div className="flex items-center gap-6 overflow-x-auto pb-2 md:pb-0 no-scrollbar">
-          {(['Todo', 'Polipropileno', 'Cordón'] as MaterialFilter[]).map(mat => (
+          {(['Todo', 'Polipropileno'] as MaterialFilter[]).map(mat => (
             <button
               key={mat}
               onClick={() => setMaterialFilter(mat)}
