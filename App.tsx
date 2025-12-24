@@ -207,11 +207,6 @@ const App: React.FC = () => {
                     <p className="text-sm text-gray-600 font-light">El tejido firme mantiene la estructura</p>
                   </div>
                 </div>
-                <div className="flex items-start gap-3">
-                  <svg className="w-6 h-6 text-[#7a8d4e] mt-1 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                  </svg>
-                </div>
               </div>
             </div>
           </div>
