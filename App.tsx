@@ -174,7 +174,7 @@ const App: React.FC = () => {
 
         <div className="space-y-16">
           <div className="space-y-6">
-            <h3 className="text-3xl serif italic text-[#7a8d4e]">El Material</h3>
+            <h3 className="text-3xl serif italic text-[#7a8d4e]">Material</h3>
             <div className="bg-gray-50/50 p-8 rounded-sm border border-gray-100">
               <p className="text-gray-700 leading-relaxed font-light text-lg mb-4">
                 Nuestras carteras están tejidas a mano en <span className="font-medium text-[#7a8d4e]">cordón de polipropileno</span>, un material excepcional que combina belleza y funcionalidad.
@@ -211,10 +211,6 @@ const App: React.FC = () => {
                   <svg className="w-6 h-6 text-[#7a8d4e] mt-1 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
-                  <div>
-                    <p className="font-medium text-gray-800">Impermeable</p>
-                    <p className="text-sm text-gray-600 font-light">Protege tus pertenencias del agua</p>
-                  </div>
                 </div>
               </div>
             </div>
@@ -258,8 +254,7 @@ const App: React.FC = () => {
             <div className="bg-gradient-to-r from-[#8b6f47]/10 to-[#7a8d4e]/10 p-8 rounded-sm border border-[#7a8d4e]/20">
               <p className="text-gray-700 leading-relaxed font-light text-lg">
                 Las correas y detalles de nuestras carteras están confeccionados con <span className="font-medium text-[#7a8d4e]">100% cuero genuino</span>,
-                garantizando durabilidad, elegancia y un acabado artesanal de primera calidad. Cada pieza de cuero es cuidadosamente seleccionada
-                para complementar el tejido de cordón.
+                garantizando durabilidad y un acabado artesanal de primera calidad.
               </p>
             </div>
           </div>
