@@ -43,9 +43,10 @@ const ProductDetail = ({ product, onAddToCart }: ProductDetailProps) => {
           {/* Main Image */}
           <div className="aspect-square bg-gray-100 rounded-sm overflow-hidden border border-gray-200">
             <img
+              key={selectedImage}
               src={selectedImage}
               alt={product.name}
-              className="w-full h-full object-cover transition-opacity duration-300"
+              className="w-full h-full object-cover animate-in fade-in zoom-in-95 duration-500"
             />
           </div>
 
