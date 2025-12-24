@@ -1,22 +1,21 @@
 import { useState } from 'react';
-import { View } from '../types';
+import { Link } from 'react-router-dom';
 
 interface NavbarProps {
   cartCount: number;
   onOpenCart: () => void;
-  onNavigate: (view: View) => void;
 }
 
-const Navbar = ({ cartCount, onOpenCart, onNavigate }: NavbarProps) => {
+const Navbar = ({ cartCount, onOpenCart }: NavbarProps) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   return (
     <nav className="sticky top-0 z-50 bg-white border-b border-gray-100 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
-          <button
-            className="flex-shrink-0 flex items-center group cursor-pointer" 
-            onClick={() => onNavigate('home')}
+          <Link
+            to="/"
+            className="flex-shrink-0 flex items-center group cursor-pointer"
             aria-label="Ir a inicio"
           >
             <div className="bg-[#7a8d4e] px-4 py-2 flex items-center justify-center rounded-sm transition-transform group-hover:scale-105 whitespace-nowrap">
@@ -24,10 +23,10 @@ const Navbar = ({ cartCount, onOpenCart, onNavigate }: NavbarProps) => {
                 GaL<span className="star-o">o</span>
               </span>
             </div>
-          </button>
-          
+          </Link>
+
           <div className="hidden lg:flex items-center space-x-8">
-            <div 
+            <div
               className="relative group"
               onMouseEnter={() => setIsDropdownOpen(true)}
               onMouseLeave={() => setIsDropdownOpen(false)}
@@ -43,28 +42,30 @@ const Navbar = ({ cartCount, onOpenCart, onNavigate }: NavbarProps) => {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                 </svg>
               </button>
-              
+
               {isDropdownOpen && (
                 <div className="absolute left-0 mt-0 w-48 bg-white shadow-xl border border-gray-100 py-2 rounded-sm animate-in fade-in slide-in-from-top-2 duration-200">
-                  <button 
-                    onClick={() => { onNavigate('carteras'); setIsDropdownOpen(false); }}
-                    className="w-full text-left px-6 py-3 text-[10px] font-bold uppercase tracking-widest text-gray-600 hover:text-[#7a8d4e] hover:bg-gray-50 transition-colors"
+                  <Link
+                    to="/carteras"
+                    onClick={() => setIsDropdownOpen(false)}
+                    className="block w-full text-left px-6 py-3 text-[10px] font-bold uppercase tracking-widest text-gray-600 hover:text-[#7a8d4e] hover:bg-gray-50 transition-colors"
                   >
                     Carteras
-                  </button>
-                  <button 
-                    onClick={() => { onNavigate('accesorios'); setIsDropdownOpen(false); }}
-                    className="w-full text-left px-6 py-3 text-[10px] font-bold uppercase tracking-widest text-gray-600 hover:text-[#7a8d4e] hover:bg-gray-50 transition-colors"
+                  </Link>
+                  <Link
+                    to="/accesorios"
+                    onClick={() => setIsDropdownOpen(false)}
+                    className="block w-full text-left px-6 py-3 text-[10px] font-bold uppercase tracking-widest text-gray-600 hover:text-[#7a8d4e] hover:bg-gray-50 transition-colors"
                   >
                     Accesorios
-                  </button>
+                  </Link>
                 </div>
               )}
             </div>
-            <button onClick={() => onNavigate('nuestras-carteras')} className="text-[10px] font-bold tracking-[0.2em] uppercase hover:text-[#7a8d4e] transition-colors">Nuestras Carteras</button>
-            <button onClick={() => onNavigate('como-comprar')} className="text-[10px] font-bold tracking-[0.2em] uppercase hover:text-[#7a8d4e] transition-colors">Cómo Comprar</button>
-            <button onClick={() => onNavigate('donde-estamos')} className="text-[10px] font-bold tracking-[0.2em] uppercase hover:text-[#7a8d4e] transition-colors">Dónde Estamos</button>
-            <button onClick={() => onNavigate('contacto')} className="text-[10px] font-bold tracking-[0.2em] uppercase hover:text-[#7a8d4e] transition-colors">Contacto</button>
+            <Link to="/nuestras-carteras" className="text-[10px] font-bold tracking-[0.2em] uppercase hover:text-[#7a8d4e] transition-colors">Nuestras Carteras</Link>
+            <Link to="/como-comprar" className="text-[10px] font-bold tracking-[0.2em] uppercase hover:text-[#7a8d4e] transition-colors">Cómo Comprar</Link>
+            <Link to="/donde-estamos" className="text-[10px] font-bold tracking-[0.2em] uppercase hover:text-[#7a8d4e] transition-colors">Dónde Estamos</Link>
+            <Link to="/contacto" className="text-[10px] font-bold tracking-[0.2em] uppercase hover:text-[#7a8d4e] transition-colors">Contacto</Link>
           </div>
 
           <div className="flex items-center space-x-4">

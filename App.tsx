@@ -1,20 +1,22 @@
 
 import React, { useState, useMemo } from 'react';
+import { BrowserRouter, Routes, Route, useNavigate, useParams, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import ProductCard from './components/ProductCard';
+import ProductDetail from './components/ProductDetail';
 import CartDrawer from './components/CartDrawer';
 import { Product, CartItem, View, MaterialFilter } from './types';
 import { PRODUCTS } from './constants';
 import { useContactForm } from './hooks/useContactForm';
 
-const App: React.FC = () => {
-  const [currentView, setCurrentView] = useState<View>('home');
+const AppContent: React.FC = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
   const [searchQuery, setSearchQuery] = useState('');
   const [materialFilter, setMaterialFilter] = useState<MaterialFilter>('Todo');
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
-  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
 
   const addToCart = (product: Product) => {
     setCartItems(prev => {
@@ -44,7 +46,16 @@ const App: React.FC = () => {
   };
 
   const handleNavigate = (view: View) => {
-    setCurrentView(view);
+    const routes: Record<View, string> = {
+      home: '/',
+      carteras: '/carteras',
+      accesorios: '/accesorios',
+      'nuestras-carteras': '/nuestras-carteras',
+      'como-comprar': '/como-comprar',
+      'donde-estamos': '/donde-estamos',
+      contacto: '/contacto'
+    };
+    navigate(routes[view]);
     setSearchQuery('');
     setMaterialFilter('Todo');
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -52,22 +63,22 @@ const App: React.FC = () => {
 
   const filteredProducts = useMemo(() => {
     let base = PRODUCTS;
-    if (currentView === 'carteras') {
+    if (location.pathname === '/carteras') {
       base = PRODUCTS.filter(p => p.category !== 'Accesorios');
-    } else if (currentView === 'accesorios') {
+    } else if (location.pathname === '/accesorios') {
       base = PRODUCTS.filter(p => p.category === 'Accesorios');
     }
     if (materialFilter !== 'Todo') {
       base = base.filter(p => p.category.includes(materialFilter));
     }
     if (searchQuery) {
-      base = base.filter(p => 
+      base = base.filter(p =>
         p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
         p.description.toLowerCase().includes(searchQuery.toLowerCase())
       );
     }
     return base;
-  }, [currentView, searchQuery, materialFilter]);
+  }, [location.pathname, searchQuery, materialFilter]);
 
   const renderHome = () => (
     <>
@@ -79,11 +90,10 @@ const App: React.FC = () => {
         </div>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
           {PRODUCTS.slice(0, 4).map(product => (
-            <ProductCard 
-              key={product.id} 
-              product={product} 
+            <ProductCard
+              key={product.id}
+              product={product}
               onAddToCart={addToCart}
-              onSelect={setSelectedProduct}
             />
           ))}
         </div>
@@ -133,11 +143,10 @@ const App: React.FC = () => {
       {filteredProducts.length > 0 ? (
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-8 gap-y-16">
           {filteredProducts.map(product => (
-            <ProductCard 
-              key={product.id} 
-              product={product} 
+            <ProductCard
+              key={product.id}
+              product={product}
               onAddToCart={addToCart}
-              onSelect={setSelectedProduct}
             />
           ))}
         </div>
@@ -469,20 +478,22 @@ const App: React.FC = () => {
 
   return (
     <div className="min-h-screen">
-      <Navbar 
-        cartCount={cartItems.reduce((acc, i) => acc + i.quantity, 0)} 
+      <Navbar
+        cartCount={cartItems.reduce((acc, i) => acc + i.quantity, 0)}
         onOpenCart={() => setIsCartOpen(true)}
-        onNavigate={handleNavigate}
       />
       
       <main className="animate-in fade-in duration-500">
-        {currentView === 'home' && renderHome()}
-        {currentView === 'carteras' && renderProductList('Carteras')}
-        {currentView === 'accesorios' && renderProductList('Accesorios')}
-        {currentView === 'nuestras-carteras' && renderNuestrasCarteras()}
-        {currentView === 'como-comprar' && renderComoComprar()}
-        {currentView === 'donde-estamos' && renderDondeEstamos()}
-        {currentView === 'contacto' && <ContactoForm />}
+        <Routes>
+          <Route path="/" element={renderHome()} />
+          <Route path="/carteras" element={renderProductList('Carteras')} />
+          <Route path="/accesorios" element={renderProductList('Accesorios')} />
+          <Route path="/nuestras-carteras" element={renderNuestrasCarteras()} />
+          <Route path="/como-comprar" element={renderComoComprar()} />
+          <Route path="/donde-estamos" element={renderDondeEstamos()} />
+          <Route path="/contacto" element={<ContactoForm />} />
+          <Route path="/producto/:id" element={<ProductDetailPage />} />
+        </Routes>
       </main>
 
       <footer className="bg-white py-24 border-t border-gray-100">
@@ -505,58 +516,61 @@ const App: React.FC = () => {
         </div>
       </footer>
 
-      <CartDrawer 
-        isOpen={isCartOpen} 
-        onClose={() => setIsCartOpen(false)} 
+      <CartDrawer
+        isOpen={isCartOpen}
+        onClose={() => setIsCartOpen(false)}
         items={cartItems}
         onUpdateQuantity={updateQuantity}
         onRemove={removeFromCart}
       />
-
-      {selectedProduct && (
-        <div className="fixed inset-0 z-[200] flex items-center justify-center p-4">
-          <div className="absolute inset-0 bg-black/70 backdrop-blur-sm" onClick={() => setSelectedProduct(null)} />
-          <div className="relative bg-white w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-sm grid grid-cols-1 md:grid-cols-2 shadow-2xl animate-in zoom-in-95 duration-300">
-            <button 
-              onClick={() => setSelectedProduct(null)}
-              className="absolute right-6 top-6 z-10 p-2 bg-gray-100 rounded-full hover:bg-[#7a8d4e] hover:text-white transition-all"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
-            <div className="h-[350px] md:h-full bg-gray-50">
-              <img src={selectedProduct.image} alt={selectedProduct.name} className="w-full h-full object-cover" />
-            </div>
-            <div className="p-8 md:p-16 space-y-8 flex flex-col justify-center">
-              <div className="space-y-3">
-                <span className="text-[#7a8d4e] font-bold text-[10px] uppercase tracking-[0.3em]">{selectedProduct.category}</span>
-                <h3 className="text-4xl serif italic">{selectedProduct.name}</h3>
-                <p className="text-3xl font-light text-gray-900">${selectedProduct.price.toFixed(2)}</p>
-              </div>
-              <p className="text-gray-500 leading-relaxed font-light text-lg italic">
-                "{selectedProduct.description}"
-              </p>
-              <div className="pt-6 border-t border-gray-100 space-y-4">
-                <button 
-                  onClick={() => {
-                    addToCart(selectedProduct);
-                    setSelectedProduct(null);
-                  }}
-                  className="w-full bg-[#7a8d4e] text-white py-5 rounded-sm font-bold uppercase text-[11px] tracking-[0.2em] shadow-lg hover:bg-[#6b7c43] transition-all"
-                >
-                  Añadir a la bolsa
-                </button>
-                <p className="text-[10px] text-center text-gray-400 font-bold uppercase tracking-widest">
-                  Pieza tejida manualmente • Envío a todo el país
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 };
+
+const ProductDetailPage = () => {
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  const [isCartOpen, setIsCartOpen] = useState(false);
+
+  const product = PRODUCTS.find(p => p.id === id);
+
+  const addToCart = (product: Product) => {
+    setCartItems(prev => {
+      const existing = prev.find(item => item.id === product.id);
+      if (existing) {
+        return prev.map(item =>
+          item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
+        );
+      }
+      return [...prev, { ...product, quantity: 1 }];
+    });
+    setIsCartOpen(true);
+  };
+
+  if (!product) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center space-y-4">
+          <h2 className="text-3xl serif italic text-gray-700">Producto no encontrado</h2>
+          <button
+            onClick={() => navigate('/carteras')}
+            className="text-[#7a8d4e] font-bold text-sm uppercase tracking-widest hover:underline"
+          >
+            Volver a carteras
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  return <ProductDetail product={product} onAddToCart={addToCart} />;
+};
+
+const App = () => (
+  <BrowserRouter>
+    <AppContent />
+  </BrowserRouter>
+);
 
 export default App;

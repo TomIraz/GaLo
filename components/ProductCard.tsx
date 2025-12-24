@@ -1,17 +1,17 @@
+import { Link } from 'react-router-dom';
 import { Product } from '../types';
 
 interface ProductCardProps {
   product: Product;
   onAddToCart: (p: Product) => void;
-  onSelect: (p: Product) => void;
 }
 
-const ProductCard = ({ product, onAddToCart, onSelect }: ProductCardProps) => {
+const ProductCard = ({ product, onAddToCart }: ProductCardProps) => {
   return (
     <div className="group flex flex-col gap-4">
-      <button
-        className="aspect-[4/5] overflow-hidden bg-gray-100 cursor-pointer relative w-full text-left"
-        onClick={() => onSelect(product)}
+      <Link
+        to={`/producto/${product.id}`}
+        className="aspect-[4/5] overflow-hidden bg-gray-100 cursor-pointer relative w-full block"
         aria-label={`Ver detalles de ${product.name}`}
       >
         <img
@@ -22,6 +22,7 @@ const ProductCard = ({ product, onAddToCart, onSelect }: ProductCardProps) => {
         <div className="absolute bottom-4 right-4 flex gap-2">
           <button
             onClick={(e) => {
+              e.preventDefault();
               e.stopPropagation();
               onAddToCart(product);
             }}
@@ -33,13 +34,15 @@ const ProductCard = ({ product, onAddToCart, onSelect }: ProductCardProps) => {
             </svg>
           </button>
         </div>
-      </button>
-      
+      </Link>
+
       <div>
         <div className="flex justify-between items-start mb-1">
-          <h3 className="font-medium text-gray-800 hover:text-[#7a8d4e] transition-colors cursor-pointer" onClick={() => onSelect(product)}>
-            {product.name}
-          </h3>
+          <Link to={`/producto/${product.id}`}>
+            <h3 className="font-medium text-gray-800 hover:text-[#7a8d4e] transition-colors cursor-pointer">
+              {product.name}
+            </h3>
+          </Link>
           <span className="text-gray-900 font-bold">${product.price.toFixed(2)}</span>
         </div>
         <p className="text-xs text-[#7a8d4e] font-bold uppercase tracking-wider">{product.category}</p>

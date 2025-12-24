@@ -9,8 +9,18 @@ export interface Product {
   price: number;
   category: Category;
   image: string;
+  images?: string[];
   description: string;
   isNew?: boolean;
+  dimensions?: {
+    height: string;
+    width: string;
+    depth: string;
+    strap: string;
+  };
+  features?: string[];
+  material?: string;
+  careInstructions?: string;
 }
 
 export interface CartItem extends Product {
