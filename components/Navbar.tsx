@@ -61,6 +61,7 @@ const Navbar = ({ cartCount, onOpenCart, onNavigate }: NavbarProps) => {
                 </div>
               )}
             </div>
+            <button onClick={() => onNavigate('nuestras-carteras')} className="text-[10px] font-bold tracking-[0.2em] uppercase hover:text-[#7a8d4e] transition-colors">Nuestras Carteras</button>
             <button onClick={() => onNavigate('como-comprar')} className="text-[10px] font-bold tracking-[0.2em] uppercase hover:text-[#7a8d4e] transition-colors">Cómo Comprar</button>
             <button onClick={() => onNavigate('donde-estamos')} className="text-[10px] font-bold tracking-[0.2em] uppercase hover:text-[#7a8d4e] transition-colors">Dónde Estamos</button>
             <button onClick={() => onNavigate('contacto')} className="text-[10px] font-bold tracking-[0.2em] uppercase hover:text-[#7a8d4e] transition-colors">Contacto</button>

@@ -116,7 +116,7 @@ const App: React.FC = () => {
         </div>
 
         <div className="flex items-center gap-6 overflow-x-auto pb-2 md:pb-0 no-scrollbar">
-          {(['Todo', 'Polipropileno'] as MaterialFilter[]).map(mat => (
+          {(['Todo', 'Polipropileno', 'Minis'] as MaterialFilter[]).map(mat => (
             <button
               key={mat}
               onClick={() => setMaterialFilter(mat)}
@@ -149,6 +149,162 @@ const App: React.FC = () => {
       )}
     </section>
   );
+
+  const renderNuestrasCarteras = () => {
+    const colores = [
+      { nombre: 'Negro', color: '#1a1a1a', imagen: '/images/colores/negro.jpg' },
+      { nombre: 'Marrón Chocolate', color: '#3e2723', imagen: '/images/colores/marron-chocolate.jpg' },
+      { nombre: 'Habano', color: '#8b6f47', imagen: '/images/colores/habano.jpg' },
+      { nombre: 'Bordó', color: '#722f37', imagen: '/images/colores/bordo.jpg' },
+      { nombre: 'Yute', color: '#d4c5a9', imagen: '/images/colores/yute.jpg' },
+      { nombre: 'Beige Claro', color: '#f5f5dc', imagen: '/images/colores/beige-claro.jpg' },
+      { nombre: 'Beige Oscuro', color: '#c9b896', imagen: '/images/colores/beige-oscuro.jpg' },
+      { nombre: 'Mostaza', color: '#d4a017', imagen: '/images/colores/mostaza.jpg' },
+      { nombre: 'Cobre', color: '#b87333', imagen: '/images/colores/cobre.jpg' },
+      { nombre: 'Verde Oliva', color: '#6b7c43', imagen: '/images/colores/verde-oliva.jpg' },
+      { nombre: 'Verde Militar', color: '#4a5d23', imagen: '/images/colores/verde-militar.jpg' },
+      { nombre: 'Azul', color: '#2c5f8d', imagen: '/images/colores/azul.jpg', isNew: true },
+      { nombre: 'Gris', color: '#6b6b6b', imagen: '/images/colores/gris.jpg' },
+      { nombre: 'Bordó-Vino', color: '#5d2e46', imagen: '/images/colores/bordo-vino.jpg' }
+    ];
+
+    return (
+      <section className="py-20 max-w-5xl mx-auto px-4">
+        <h2 className="text-5xl serif italic text-[#333] mb-16 text-center">Nuestras Carteras</h2>
+
+        <div className="space-y-16">
+          <div className="space-y-6">
+            <h3 className="text-3xl serif italic text-[#7a8d4e]">El Material</h3>
+            <div className="bg-gray-50/50 p-8 rounded-sm border border-gray-100">
+              <p className="text-gray-700 leading-relaxed font-light text-lg mb-4">
+                Nuestras carteras están tejidas a mano en <span className="font-medium text-[#7a8d4e]">cordón de polipropileno</span>, un material excepcional que combina belleza y funcionalidad.
+              </p>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+                <div className="flex items-start gap-3">
+                  <svg className="w-6 h-6 text-[#7a8d4e] mt-1 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  <div>
+                    <p className="font-medium text-gray-800">Resistente y Duradero</p>
+                    <p className="text-sm text-gray-600 font-light">Soporta el uso diario sin desgaste</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <svg className="w-6 h-6 text-[#7a8d4e] mt-1 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  <div>
+                    <p className="font-medium text-gray-800">Lavable</p>
+                    <p className="text-sm text-gray-600 font-light">Fácil de limpiar y mantener</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <svg className="w-6 h-6 text-[#7a8d4e] mt-1 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  <div>
+                    <p className="font-medium text-gray-800">No Pierde la Forma</p>
+                    <p className="text-sm text-gray-600 font-light">El tejido firme mantiene la estructura</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <svg className="w-6 h-6 text-[#7a8d4e] mt-1 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  <div>
+                    <p className="font-medium text-gray-800">Impermeable</p>
+                    <p className="text-sm text-gray-600 font-light">Protege tus pertenencias del agua</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="space-y-6">
+            <h3 className="text-3xl serif italic text-[#7a8d4e]">Características</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="bg-white p-6 rounded-sm border border-gray-100 shadow-sm">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="w-10 h-10 rounded-full bg-[#7a8d4e]/10 flex items-center justify-center">
+                    <svg className="w-5 h-5 text-[#7a8d4e]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                    </svg>
+                  </div>
+                  <h4 className="font-medium text-gray-800">Cierres de Calidad</h4>
+                </div>
+                <p className="text-gray-600 font-light leading-relaxed">
+                  Todas nuestras carteras incluyen cierres resistentes y duraderos que aseguran tus pertenencias.
+                </p>
+              </div>
+
+              <div className="bg-white p-6 rounded-sm border border-gray-100 shadow-sm">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="w-10 h-10 rounded-full bg-[#7a8d4e]/10 flex items-center justify-center">
+                    <svg className="w-5 h-5 text-[#7a8d4e]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
+                    </svg>
+                  </div>
+                  <h4 className="font-medium text-gray-800">Forro de Tela</h4>
+                </div>
+                <p className="text-gray-600 font-light leading-relaxed">
+                  Interior forrado con tela suave para mayor comodidad y protección de tus objetos personales.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="space-y-6">
+            <h3 className="text-3xl serif italic text-[#7a8d4e]">Detalles de Cuero</h3>
+            <div className="bg-gradient-to-r from-[#8b6f47]/10 to-[#7a8d4e]/10 p-8 rounded-sm border border-[#7a8d4e]/20">
+              <p className="text-gray-700 leading-relaxed font-light text-lg">
+                Las correas y detalles de nuestras carteras están confeccionados con <span className="font-medium text-[#7a8d4e]">100% cuero genuino</span>,
+                garantizando durabilidad, elegancia y un acabado artesanal de primera calidad. Cada pieza de cuero es cuidadosamente seleccionada
+                para complementar el tejido de cordón.
+              </p>
+            </div>
+          </div>
+
+          <div className="space-y-8">
+            <div className="text-center space-y-2">
+              <h3 className="text-3xl serif italic text-[#7a8d4e]">Colores Disponibles</h3>
+              <p className="text-gray-500 font-light">Elegí el color que mejor se adapte a tu estilo</p>
+            </div>
+
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+              {colores.map((color, idx) => (
+                <div key={idx} className="group relative">
+                  <div className="aspect-square rounded-sm overflow-hidden border-2 border-gray-200 group-hover:border-[#7a8d4e] transition-all shadow-sm">
+                    <div
+                      className="w-full h-full flex items-center justify-center text-white font-light text-sm"
+                      style={{ backgroundColor: color.color }}
+                    >
+                      <span className="opacity-0 group-hover:opacity-100 transition-opacity bg-black/50 px-3 py-1 rounded-sm">
+                        {color.nombre}
+                      </span>
+                    </div>
+                  </div>
+                  <div className="mt-2 text-center">
+                    <p className="text-sm font-medium text-gray-700">{color.nombre}</p>
+                    {color.isNew && (
+                      <span className="inline-block mt-1 text-[9px] font-bold uppercase tracking-widest bg-[#7a8d4e] text-white px-2 py-0.5 rounded-sm">
+                        Nuevo
+                      </span>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="text-center pt-8 border-t border-gray-100">
+              <p className="text-gray-500 font-light italic">
+                ¿No encontrás el color que buscás? Consultanos por pedidos personalizados.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  };
 
   const renderComoComprar = () => (
     <section className="py-20 max-w-3xl mx-auto px-4">
@@ -333,6 +489,7 @@ const App: React.FC = () => {
         {currentView === 'home' && renderHome()}
         {currentView === 'carteras' && renderProductList('Carteras')}
         {currentView === 'accesorios' && renderProductList('Accesorios')}
+        {currentView === 'nuestras-carteras' && renderNuestrasCarteras()}
         {currentView === 'como-comprar' && renderComoComprar()}
         {currentView === 'donde-estamos' && renderDondeEstamos()}
         {currentView === 'contacto' && <ContactoForm />}
