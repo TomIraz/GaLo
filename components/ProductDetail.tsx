@@ -10,6 +10,7 @@ interface ProductDetailProps {
 const ProductDetail = ({ product, onAddToCart }: ProductDetailProps) => {
   const navigate = useNavigate();
   const [selectedImage, setSelectedImage] = useState(product.images?.[0] || product.image);
+  const [imageKey, setImageKey] = useState(0);
 
   const handleAddToCart = () => {
     onAddToCart(product);
@@ -43,10 +44,13 @@ const ProductDetail = ({ product, onAddToCart }: ProductDetailProps) => {
           {/* Main Image */}
           <div className="aspect-square bg-gray-100 rounded-sm overflow-hidden border border-gray-200">
             <img
-              key={selectedImage}
+              key={imageKey}
               src={selectedImage}
               alt={product.name}
-              className="w-full h-full object-cover animate-in fade-in zoom-in-95 duration-500"
+              className="w-full h-full object-cover transition-all duration-500 ease-out"
+              style={{
+                animation: 'fadeInZoom 0.5s ease-out'
+              }}
             />
           </div>
 
@@ -56,7 +60,10 @@ const ProductDetail = ({ product, onAddToCart }: ProductDetailProps) => {
               {product.images.map((img, idx) => (
                 <button
                   key={idx}
-                  onClick={() => setSelectedImage(img)}
+                  onClick={() => {
+                    setSelectedImage(img);
+                    setImageKey(prev => prev + 1);
+                  }}
                   className={`aspect-square rounded-sm overflow-hidden border-2 transition-all hover:border-[#7a8d4e]/60 ${
                     selectedImage === img ? 'border-[#7a8d4e] ring-2 ring-[#7a8d4e]/20' : 'border-gray-200'
                   }`}
