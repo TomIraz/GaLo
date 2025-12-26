@@ -5,8 +5,7 @@ import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import ProductCard from './components/ProductCard';
 import ProductDetail from './components/ProductDetail';
-import CartDrawer from './components/CartDrawer';
-import { Product, CartItem, View, MaterialFilter } from './types';
+import { Product, View, MaterialFilter } from './types';
 import { PRODUCTS } from './constants';
 import { useContactForm } from './hooks/useContactForm';
 
@@ -15,35 +14,6 @@ const AppContent: React.FC = () => {
   const location = useLocation();
   const [searchQuery, setSearchQuery] = useState('');
   const [materialFilter, setMaterialFilter] = useState<MaterialFilter>('Todo');
-  const [cartItems, setCartItems] = useState<CartItem[]>([]);
-  const [isCartOpen, setIsCartOpen] = useState(false);
-
-  const addToCart = (product: Product) => {
-    setCartItems(prev => {
-      const existing = prev.find(item => item.id === product.id);
-      if (existing) {
-        return prev.map(item => 
-          item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
-        );
-      }
-      return [...prev, { ...product, quantity: 1 }];
-    });
-    setIsCartOpen(true);
-  };
-
-  const updateQuantity = (id: string, delta: number) => {
-    setCartItems(prev => prev.map(item => {
-      if (item.id === id) {
-        const newQty = Math.max(0, item.quantity + delta);
-        return { ...item, quantity: newQty };
-      }
-      return item;
-    }).filter(item => item.quantity > 0));
-  };
-
-  const removeFromCart = (id: string) => {
-    setCartItems(prev => prev.filter(item => item.id !== id));
-  };
 
   const handleNavigate = (view: View) => {
     const routes: Record<View, string> = {
@@ -93,7 +63,6 @@ const AppContent: React.FC = () => {
             <ProductCard
               key={product.id}
               product={product}
-              onAddToCart={addToCart}
             />
           ))}
         </div>
@@ -146,7 +115,6 @@ const AppContent: React.FC = () => {
             <ProductCard
               key={product.id}
               product={product}
-              onAddToCart={addToCart}
             />
           ))}
         </div>
@@ -478,11 +446,8 @@ const AppContent: React.FC = () => {
 
   return (
     <div className="min-h-screen">
-      <Navbar
-        cartCount={cartItems.reduce((acc, i) => acc + i.quantity, 0)}
-        onOpenCart={() => setIsCartOpen(true)}
-      />
-      
+      <Navbar />
+
       <main className="animate-in fade-in duration-500">
         <Routes>
           <Route path="/" element={renderHome()} />
@@ -515,14 +480,6 @@ const AppContent: React.FC = () => {
           <p className="text-[10px] text-gray-300 tracking-wider">© 2024 GaLo. Todos los derechos reservados.</p>
         </div>
       </footer>
-
-      <CartDrawer
-        isOpen={isCartOpen}
-        onClose={() => setIsCartOpen(false)}
-        items={cartItems}
-        onUpdateQuantity={updateQuantity}
-        onRemove={removeFromCart}
-      />
     </div>
   );
 };
@@ -530,23 +487,8 @@ const AppContent: React.FC = () => {
 const ProductDetailPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const [cartItems, setCartItems] = useState<CartItem[]>([]);
-  const [isCartOpen, setIsCartOpen] = useState(false);
 
   const product = PRODUCTS.find(p => p.id === id);
-
-  const addToCart = (product: Product) => {
-    setCartItems(prev => {
-      const existing = prev.find(item => item.id === product.id);
-      if (existing) {
-        return prev.map(item =>
-          item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
-        );
-      }
-      return [...prev, { ...product, quantity: 1 }];
-    });
-    setIsCartOpen(true);
-  };
 
   if (!product) {
     return (
@@ -564,7 +506,7 @@ const ProductDetailPage = () => {
     );
   }
 
-  return <ProductDetail product={product} onAddToCart={addToCart} />;
+  return <ProductDetail product={product} />;
 };
 
 const App = () => (

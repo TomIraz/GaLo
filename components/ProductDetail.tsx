@@ -4,17 +4,12 @@ import { Product } from '../types';
 
 interface ProductDetailProps {
   product: Product;
-  onAddToCart: (product: Product) => void;
 }
 
-const ProductDetail = ({ product, onAddToCart }: ProductDetailProps) => {
+const ProductDetail = ({ product }: ProductDetailProps) => {
   const navigate = useNavigate();
   const [selectedImage, setSelectedImage] = useState(product.images?.[0] || product.image);
   const [imageKey, setImageKey] = useState(0);
-
-  const handleAddToCart = () => {
-    onAddToCart(product);
-  };
 
   const getCategoryPath = () => {
     if (product.category === 'Minis' || product.category === 'Cordón de Polipropileno') {
@@ -99,13 +94,7 @@ const ProductDetail = ({ product, onAddToCart }: ProductDetailProps) => {
           </p>
 
           <div className="pt-6 border-t border-gray-100">
-            <button
-              onClick={handleAddToCart}
-              className="w-full bg-[#7a8d4e] text-white py-5 rounded-sm font-bold uppercase text-[11px] tracking-[0.2em] shadow-lg hover:bg-[#6b7c43] transition-all transform hover:-translate-y-0.5"
-            >
-              Añadir a la bolsa
-            </button>
-            <p className="text-[10px] text-center text-gray-400 font-bold uppercase tracking-widest mt-4">
+            <p className="text-[10px] text-center text-gray-400 font-bold uppercase tracking-widest">
               Pieza tejida manualmente • Envío a todo el país
             </p>
           </div>

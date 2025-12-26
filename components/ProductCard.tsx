@@ -3,10 +3,9 @@ import { Product } from '../types';
 
 interface ProductCardProps {
   product: Product;
-  onAddToCart: (p: Product) => void;
 }
 
-const ProductCard = ({ product, onAddToCart }: ProductCardProps) => {
+const ProductCard = ({ product }: ProductCardProps) => {
   return (
     <div className="group flex flex-col gap-4">
       <Link
@@ -19,21 +18,6 @@ const ProductCard = ({ product, onAddToCart }: ProductCardProps) => {
           alt={`${product.name} - ${product.description}`}
           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
         />
-        <div className="absolute bottom-4 right-4 flex gap-2">
-          <button
-            onClick={(e) => {
-              e.preventDefault();
-              e.stopPropagation();
-              onAddToCart(product);
-            }}
-            className="bg-white/90 backdrop-blur p-3 rounded-full shadow-md hover:bg-[#7a8d4e] hover:text-white transition-colors"
-            aria-label={`Agregar ${product.name} al carrito`}
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
-            </svg>
-          </button>
-        </div>
       </Link>
 
       <div>
