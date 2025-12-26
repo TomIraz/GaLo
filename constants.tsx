@@ -36,7 +36,8 @@ export const PRODUCTS: Product[] = [
       'Lavable con agua fría'
     ],
     material: 'Cordón de polipropileno importado',
-    careInstructions: 'Lavar con agua fría y jabón neutro. Dejar secar al aire libre. No usar lavadora.'
+    careInstructions: 'Lavar con agua fría y jabón neutro. Dejar secar al aire libre. No usar lavadora.',
+    availableColors: ['Verde Oliva', 'Negro', 'Beige Claro', 'Gris', 'Bordó', 'Marrón Chocolate', 'Verde Militar', 'Habano', 'Yute', 'Beige Oscuro', 'Mostaza', 'Cobre', 'Azul', 'Bordó-Vino']
   },
   {
     id: '2',
@@ -66,7 +67,8 @@ export const PRODUCTS: Product[] = [
       'Material impermeable'
     ],
     material: 'Cordón de polipropileno importado',
-    careInstructions: 'Lavar con agua fría y jabón neutro. Dejar secar al aire libre.'
+    careInstructions: 'Lavar con agua fría y jabón neutro. Dejar secar al aire libre.',
+    availableColors: ['Gris', 'Negro', 'Beige Claro', 'Verde Oliva', 'Bordó', 'Marrón Chocolate', 'Verde Militar', 'Habano', 'Yute', 'Beige Oscuro', 'Mostaza', 'Cobre', 'Azul', 'Bordó-Vino']
   },
   {
     id: '3',
@@ -96,7 +98,8 @@ export const PRODUCTS: Product[] = [
       'Color neutro versátil'
     ],
     material: 'Cordón de polipropileno importado',
-    careInstructions: 'Lavar con agua fría y jabón neutro. Dejar secar al aire libre.'
+    careInstructions: 'Lavar con agua fría y jabón neutro. Dejar secar al aire libre.',
+    availableColors: ['Beige Claro', 'Beige Oscuro', 'Yute', 'Negro', 'Gris', 'Verde Oliva', 'Bordó', 'Marrón Chocolate', 'Verde Militar', 'Habano', 'Mostaza', 'Cobre', 'Azul', 'Bordó-Vino']
   },
   {
     id: '5',
@@ -124,7 +127,8 @@ export const PRODUCTS: Product[] = [
       'Unisex'
     ],
     material: 'Cordón de polipropileno elástico',
-    careInstructions: 'Lavar a mano con agua fría. Secar al aire.'
+    careInstructions: 'Lavar a mano con agua fría. Secar al aire.',
+    availableColors: ['Negro', 'Marrón Chocolate', 'Habano', 'Beige Oscuro', 'Gris', 'Verde Militar']
   },
   {
     id: '4',
@@ -156,7 +160,8 @@ export const PRODUCTS: Product[] = [
       'Ideal para lo esencial'
     ],
     material: 'Cordón de polipropileno importado',
-    careInstructions: 'Lavar con agua fría y jabón neutro. Dejar secar al aire libre.'
+    careInstructions: 'Lavar con agua fría y jabón neutro. Dejar secar al aire libre.',
+    availableColors: ['Cobre', 'Negro', 'Beige Claro', 'Gris', 'Verde Oliva', 'Bordó', 'Marrón Chocolate', 'Verde Militar', 'Habano', 'Yute', 'Beige Oscuro', 'Mostaza', 'Azul', 'Bordó-Vino']
   },
   {
     id: '6',
@@ -184,7 +189,8 @@ export const PRODUCTS: Product[] = [
       'Tejido resistente'
     ],
     material: 'Cordón de polipropileno trenzado',
-    careInstructions: 'Limpiar con paño húmedo. Lavar a mano si es necesario.'
+    careInstructions: 'Limpiar con paño húmedo. Lavar a mano si es necesario.',
+    availableColors: ['Negro', 'Beige Claro', 'Verde Oliva', 'Marrón Chocolate', 'Gris', 'Bordó']
   },
   {
     id: '7',
@@ -214,7 +220,8 @@ export const PRODUCTS: Product[] = [
       'Liviana y práctica'
     ],
     material: 'Cordón de polipropileno natural',
-    careInstructions: 'Lavar con agua fría y jabón neutro. Dejar secar al aire libre.'
+    careInstructions: 'Lavar con agua fría y jabón neutro. Dejar secar al aire libre.',
+    availableColors: ['Yute', 'Beige Claro', 'Beige Oscuro', 'Negro', 'Gris', 'Verde Oliva', 'Bordó', 'Marrón Chocolate', 'Verde Militar', 'Habano', 'Mostaza', 'Cobre', 'Azul', 'Bordó-Vino']
   },
   {
     id: '8',
@@ -242,7 +249,8 @@ export const PRODUCTS: Product[] = [
       'Diseño exclusivo GaLo'
     ],
     material: 'Cordón de polipropileno y detalles metálicos',
-    careInstructions: 'Lavar a mano con agua fría. Secar al aire.'
+    careInstructions: 'Lavar a mano con agua fría. Secar al aire.',
+    availableColors: ['Negro', 'Marrón Chocolate', 'Beige Oscuro', 'Verde Militar', 'Gris']
   }
 ];
 

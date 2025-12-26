@@ -10,12 +10,21 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
   const navigate = useNavigate();
   const [selectedImage, setSelectedImage] = useState(product.images?.[0] || product.image);
   const [imageKey, setImageKey] = useState(0);
+  const [selectedColor, setSelectedColor] = useState<string>(product.availableColors?.[0] || '');
+  const [quantity, setQuantity] = useState(1);
 
   const getCategoryPath = () => {
     if (product.category === 'Minis' || product.category === 'Cordón de Polipropileno') {
       return '/carteras';
     }
     return '/accesorios';
+  };
+
+  const handleInstagramContact = () => {
+    const message = `Hola! Me interesa el producto:\n\n📦 ${product.name}\n🎨 Color: ${selectedColor}\n📊 Cantidad: ${quantity}\n\n¿Está disponible?`;
+    const encodedMessage = encodeURIComponent(message);
+    const instagramUrl = `https://www.instagram.com/direct/new/?text=${encodedMessage}`;
+    window.open(instagramUrl, '_blank');
   };
 
   return (
@@ -92,6 +101,69 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
           <p className="text-gray-600 leading-relaxed font-light text-lg italic">
             "{product.description}"
           </p>
+
+          {/* Color Selector */}
+          {product.availableColors && product.availableColors.length > 0 && (
+            <div className="space-y-3">
+              <label className="text-sm font-bold uppercase tracking-widest text-gray-700">
+                Color
+              </label>
+              <select
+                value={selectedColor}
+                onChange={(e) => setSelectedColor(e.target.value)}
+                className="w-full px-4 py-3 border-2 border-gray-200 rounded-sm text-gray-700 font-medium focus:outline-none focus:border-[#7a8d4e] transition-colors cursor-pointer"
+              >
+                {product.availableColors.map((color) => (
+                  <option key={color} value={color}>
+                    {color}
+                  </option>
+                ))}
+              </select>
+            </div>
+          )}
+
+          {/* Quantity Selector */}
+          <div className="space-y-3">
+            <label className="text-sm font-bold uppercase tracking-widest text-gray-700">
+              Cantidad
+            </label>
+            <div className="flex items-center gap-4">
+              <button
+                onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                className="w-10 h-10 border-2 border-gray-200 rounded-sm flex items-center justify-center hover:border-[#7a8d4e] hover:text-[#7a8d4e] transition-colors font-bold text-lg"
+                aria-label="Disminuir cantidad"
+              >
+                −
+              </button>
+              <input
+                type="number"
+                min="1"
+                value={quantity}
+                onChange={(e) => setQuantity(Math.max(1, parseInt(e.target.value) || 1))}
+                className="w-20 px-4 py-2 border-2 border-gray-200 rounded-sm text-center text-gray-700 font-medium focus:outline-none focus:border-[#7a8d4e] transition-colors"
+              />
+              <button
+                onClick={() => setQuantity(quantity + 1)}
+                className="w-10 h-10 border-2 border-gray-200 rounded-sm flex items-center justify-center hover:border-[#7a8d4e] hover:text-[#7a8d4e] transition-colors font-bold text-lg"
+                aria-label="Aumentar cantidad"
+              >
+                +
+              </button>
+            </div>
+          </div>
+
+          {/* Instagram Contact Button */}
+          <button
+            onClick={handleInstagramContact}
+            className="w-full bg-[#7a8d4e] text-white py-4 px-6 rounded-sm font-bold uppercase tracking-widest text-sm hover:bg-[#6a7d3e] transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-3"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+            </svg>
+            Consultar Stock / Hacer Pedido
+          </button>
 
           <div className="pt-6 border-t border-gray-100">
             <p className="text-[10px] text-center text-gray-400 font-bold uppercase tracking-widest">
