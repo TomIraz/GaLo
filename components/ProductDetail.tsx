@@ -12,6 +12,7 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
   const [imageKey, setImageKey] = useState(0);
   const [selectedColor, setSelectedColor] = useState<string>(product.availableColors?.[0] || '');
   const [quantity, setQuantity] = useState(1);
+  const [showCopyFeedback, setShowCopyFeedback] = useState(false);
 
   const getCategoryPath = () => {
     if (product.category === 'Minis' || product.category === 'Cordón de Polipropileno') {
@@ -20,11 +21,48 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
     return '/accesorios';
   };
 
-  const handleInstagramContact = () => {
+  const handleInstagramContact = async () => {
     const message = `Hola! Me interesa el producto:\n\n📦 ${product.name}\n🎨 Color: ${selectedColor}\n📊 Cantidad: ${quantity}\n\n¿Está disponible?`;
-    const encodedMessage = encodeURIComponent(message);
-    const instagramUrl = `https://www.instagram.com/direct/new/?text=${encodedMessage}`;
-    window.open(instagramUrl, '_blank');
+
+    try {
+      // Copiar al portapapeles usando la Clipboard API moderna
+      await navigator.clipboard.writeText(message);
+
+      // Mostrar feedback visual
+      setShowCopyFeedback(true);
+      setTimeout(() => setShowCopyFeedback(false), 2500);
+
+      // Abrir Instagram DM con @galo_carteras usando ig.me (formato oficial)
+      setTimeout(() => {
+        window.open('https://ig.me/m/galo_carteras', '_blank');
+      }, 300);
+
+    } catch (err) {
+      // Fallback para navegadores antiguos o si falla la Clipboard API
+      console.error('Error al copiar:', err);
+
+      // Método alternativo: crear textarea temporal
+      const textarea = document.createElement('textarea');
+      textarea.value = message;
+      textarea.style.position = 'fixed';
+      textarea.style.opacity = '0';
+      document.body.appendChild(textarea);
+      textarea.select();
+
+      try {
+        document.execCommand('copy');
+        setShowCopyFeedback(true);
+        setTimeout(() => setShowCopyFeedback(false), 2500);
+
+        setTimeout(() => {
+          window.open('https://ig.me/m/galo_carteras', '_blank');
+        }, 300);
+      } catch (fallbackErr) {
+        alert('No se pudo copiar el mensaje. Por favor, copialo manualmente.');
+      } finally {
+        document.body.removeChild(textarea);
+      }
+    }
   };
 
   return (
@@ -153,17 +191,26 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
           </div>
 
           {/* Instagram Contact Button */}
-          <button
-            onClick={handleInstagramContact}
-            className="w-full bg-[#7a8d4e] text-white py-4 px-6 rounded-sm font-bold uppercase tracking-widest text-sm hover:bg-[#6a7d3e] transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-3"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-            </svg>
-            Consultar Stock / Hacer Pedido
-          </button>
+          <div className="relative">
+            <button
+              onClick={handleInstagramContact}
+              className="w-full bg-[#7a8d4e] text-white py-4 px-6 rounded-sm font-bold uppercase tracking-widest text-sm hover:bg-[#6a7d3e] transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-3"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+              </svg>
+              Consultar Stock / Hacer Pedido
+            </button>
+
+            {/* Feedback Toast */}
+            {showCopyFeedback && (
+              <div className="absolute -top-12 left-1/2 transform -translate-x-1/2 bg-gray-900 text-white px-4 py-2 rounded-sm text-xs font-medium whitespace-nowrap shadow-lg animate-in fade-in slide-in-from-bottom-2 duration-200">
+                ✓ Mensaje copiado! Pegalo en Instagram
+              </div>
+            )}
+          </div>
 
           <div className="pt-6 border-t border-gray-100">
             <p className="text-[10px] text-center text-gray-400 font-bold uppercase tracking-widest">
