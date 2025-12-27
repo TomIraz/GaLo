@@ -1,16 +1,11 @@
 
 import { Product } from './types';
 
-// Para usar tus propias imágenes:
-// 1. Guarda tus fotos en: /root/GaLo/frontend/public/images/carteras/ o /accesorios/
-// 2. Nombra tus archivos descriptivamente (ej: cartera-tote-canela.jpg)
-// 3. Reemplaza las URLs con: /images/carteras/nombre-archivo.jpg
-
 export const PRODUCTS: Product[] = [
   {
     id: '1',
     name: 'Cartera Eva',
-    price: 75.00,
+    price: 54.500,
     category: 'Cordón de Polipropileno',
     description: 'Nuestra clásica de polipropileno. Resistente, lavable y perfecta para el uso diario. Tejido firme que no pierde la forma.',
     image: '/images/carteras/eva/eva-gris.jpg.jpg',
@@ -38,7 +33,7 @@ export const PRODUCTS: Product[] = [
   {
     id: '2',
     name: 'Cartera Cami',
-    price: 75.00,
+    price: 52.800,
     category: 'Cordón de Polipropileno',
     description: 'Nuestra clásica de polipropileno. Resistente, lavable y perfecta para el uso diario. Tejido firme que no pierde la forma.',
     image: '/images/carteras/cami/cami-beige.jpg',
@@ -66,13 +61,13 @@ export const PRODUCTS: Product[] = [
   {
     id: '101',
     name: 'Mini Isa',
-    price: 45.00,
+    price: 37.000,
     category: 'Minis',
     description: 'El mismo diseño de cordón en tamaño compacto. Ideal para llevar solo lo esencial con un toque artesanal.',
     image: '/images/carteras/mini-isa/mini-isa-verde.jpg',
     images: [
       '/images/carteras/mini-isa/mini-isa-verde.jpg',
-      '/images/carteras/mini-isa/mini-isa/mini-isa-verde-2.jpg',
+      '/images/carteras/mini-isa/mini-isa-verde-2.jpg',
       '/images/carteras/mini-isa/mini-isa-verde-abierta-1.jpg'
     ],
     isNew: true,
@@ -96,16 +91,46 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: '102',
-    name: 'Mini Cordón Crudo',
+    name: 'Mini Mara',
     price: 45.00,
     category: 'Minis',
     description: 'Pequeña, ligera y elegante. El color crudo natural resalta la trama del tejido hecho a mano.',
-    image: '/images/carteras/mini-cordon-crudo.jpg',
+    image: '/images/carteras/mini-mara/mara-beige.jpg',
     images: [
-      '/images/carteras/mini-cordon-crudo.jpg',
-      '/images/carteras/mini-cordon-crudo.jpg',
-      '/images/carteras/mini-cordon-crudo.jpg',
-      '/images/carteras/mini-cordon-crudo.jpg'
+      '/images/carteras/mini-mara/mara-beige.jpg',
+      '/images/carteras/mini-mara/mara-beige-cerca.jpg',
+      '/images/carteras/mini-mara/mera-beige-cierre.jpg',
+      '/images/carteras/mini-mara/mera-herraje.jpg'
+    ],
+    dimensions: {
+      height: '20 cm',
+      width: '22 cm',
+      depth: '8 cm',
+      strap: 'Correa: 120 cm (para usar cruzada)'
+    },
+    features: [
+      'Color natural crudo',
+      'Cierre magnético',
+      'Forro interior',
+      'Correa de cuero',
+      'Diseño minimalista',
+      'Liviana y práctica'
+    ],
+    material: 'Cordón de polipropileno natural',
+    careInstructions: 'Lavar con agua fría y jabón neutro. Dejar secar al aire libre.',
+    availableColors: ['Yute', 'Beige Claro', 'Beige Oscuro', 'Negro', 'Gris', 'Verde Oliva', 'Bordó', 'Marrón Chocolate', 'Verde Militar', 'Habano', 'Mostaza', 'Cobre', 'Azul', 'Bordó-Vino']
+  },
+  {
+    id: '103',
+    name: 'Mini Tokio',
+    price: 45.00,
+    category: 'Minis',
+    description: 'Pequeña, ligera y elegante. El color crudo natural resalta la trama del tejido hecho a mano.',
+    image: '/images/carteras/mini-tokio/mini-tokio-marron.jpg',
+    images: [
+      '/images/carteras/mini-tokio/mini-tokio-marron.jpg',
+      '/images/carteras/mini-tokio/mini-tokio-marron-arriba.jpg',
+      '/images/carteras/mini-tokio/mini-tokio-marron-herraje.jpg'
     ],
     dimensions: {
       height: '20 cm',
@@ -128,14 +153,14 @@ export const PRODUCTS: Product[] = [
   {
     id: '201',
     name: 'Cinturón',
-    price: 25.00,
+    price: 18.000,
     category: 'Accesorios',
     description: 'Cinturón elástico tejido manualmente. Hebilla metálica de alta calidad. Disponible en varios colores tierra.',
-    image: '/images/accesorios/cinturones-fondo-blanco.jpg',
+    image: '/images/accesorios/cinturones/cinturones-fondo-blanco.jpg',
     images: [
-      '/images/accesorios/cinturones-fondo-blanco.jpg',
-      '/images/accesorios/cinturones-fondo-blanco.jpg',
-      '/images/accesorios/cinturones-fondo-blanco.jpg'
+      '/images/accesorios/cinturones/cinturones-fondo-blanco.jpg',
+      '/images/accesorios/cinturones/cinturones-fondo-blanco.jpg',
+      '/images/accesorios/cinturones/cinturones-fondo-blanco.jpg'
     ],
     dimensions: {
       height: '4 cm',
@@ -157,14 +182,43 @@ export const PRODUCTS: Product[] = [
   {
     id: '301',
     name: 'Porta Celular',
-    price: 30.00,
+    price: 15.000,
     category: 'Accesorios',
     description: 'Accesorio de cordón trenzado para llevar el celular con comodidad. Correa larga para usar cruzado.',
-    image: '/images/accesorios/porta-celular-nudo.jpg',
+    image: '/images/accesorios/porta-celulares/porta-celulares-3.jpg',
     images: [
-      '/images/accesorios/porta-celular-nudo.jpg',
-      '/images/accesorios/porta-celular-nudo.jpg',
-      '/images/accesorios/porta-celular-nudo.jpg'
+      '/images/accesorios/porta-celulares/porta-celulares-3.jpg',
+      '/images/accesorios/porta-celulares/porta-celulares-3.jpg',
+      '/images/accesorios/porta-celulares/porta-celulares-3.jpg'
+    ],
+    dimensions: {
+      height: '18 cm',
+      width: '11 cm',
+      depth: '2 cm',
+      strap: 'Correa: 130 cm'
+    },
+    features: [
+      'Compartimento para celular',
+      'Cierre con solapa',
+      'Correa larga ajustable',
+      'Diseño cruzado',
+      'Tejido resistente'
+    ],
+    material: 'Cordón de polipropileno trenzado',
+    careInstructions: 'Limpiar con paño húmedo. Lavar a mano si es necesario.',
+    availableColors: ['Negro', 'Beige Claro', 'Verde Oliva', 'Marrón Chocolate', 'Gris', 'Bordó']
+  },
+  {
+    id: '301',
+    name: 'Pulsera',
+    price: 15.000,
+    category: 'Accesorios',
+    description: 'Accesorio de cordón trenzado para llevar el celular con comodidad. Correa larga para usar cruzado.',
+    image: '/images/accesorios/pulseras/pulseras-colores.jpg',
+    images: [
+      '/images/accesorios/pulseras/pulseras-colores.jpg',
+      '/images/accesorios/pulseras/pulseras-colores.jpg',
+      '/images/accesorios/pulseras/pulseras-colores.jpg'
     ],
     dimensions: {
       height: '18 cm',
