@@ -97,10 +97,10 @@ export const PRODUCTS: Product[] = [
     description: 'Pequeña, ligera y elegante. El color crudo natural resalta la trama del tejido hecho a mano.',
     image: '/images/carteras/mini-mara/mara-beige.jpg',
     images: [
-      '/images/carteras/mini-mara/mara-beige.jpg',
-      '/images/carteras/mini-mara/mara-beige-cerca.jpg',
-      '/images/carteras/mini-mara/mera-beige-cierre.jpg',
-      '/images/carteras/mini-mara/mera-herraje.jpg'
+      '/images/carteras/mini-mara/mini-mara-beige.jpg',
+      '/images/carteras/mini-mara/mini-mara-beige-cerca.jpg',
+      '/images/carteras/mini-mara/mini-mera-beige-cierre.jpg',
+      '/images/carteras/mini-mara/mini-mera-herraje.jpg'
     ],
     dimensions: {
       height: '20 cm',
