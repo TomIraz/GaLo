@@ -28,7 +28,7 @@ export const PRODUCTS: Product[] = [
     ],
     material: 'Cordón de polipropileno importado',
     careInstructions: 'Lavar con agua fría y jabón neutro. Dejar secar al aire libre.',
-    availableColors: ['Gris', 'Negro', 'Beige Claro', 'Verde Oliva', 'Bordó', 'Marrón Chocolate', 'Verde Militar', 'Habano', 'Yute', 'Beige Oscuro', 'Mostaza', 'Cobre', 'Azul', 'Bordó-Vino']
+    availableColors: ['Gris', 'Negro', 'Beige Claro', 'Verde Oliva', 'Bordó', 'Marrón Chocolate', 'Verde Militar', 'Habano', 'Yute', 'Beige Oscuro', 'Mostaza', 'Cobre', 'Azul', 'Vino']
   },
   {
     id: '2',
@@ -56,7 +56,7 @@ export const PRODUCTS: Product[] = [
     ],
     material: 'Cordón de polipropileno importado',
     careInstructions: 'Lavar con agua fría y jabón neutro. Dejar secar al aire libre.',
-    availableColors: ['Beige Claro', 'Beige Oscuro', 'Yute', 'Negro', 'Gris', 'Verde Oliva', 'Bordó', 'Marrón Chocolate', 'Verde Militar', 'Habano', 'Mostaza', 'Cobre', 'Azul', 'Bordó-Vino']
+    availableColors: ['Beige Claro', 'Beige Oscuro', 'Yute', 'Negro', 'Gris', 'Verde Oliva', 'Bordó', 'Marrón Chocolate', 'Verde Militar', 'Habano', 'Mostaza', 'Cobre', 'Azul', 'Vino']
   },
   {
     id: '101',
@@ -87,7 +87,7 @@ export const PRODUCTS: Product[] = [
     ],
     material: 'Cordón de polipropileno importado',
     careInstructions: 'Lavar con agua fría y jabón neutro. Dejar secar al aire libre.',
-    availableColors: ['Cobre', 'Negro', 'Beige Claro', 'Gris', 'Verde Oliva', 'Bordó', 'Marrón Chocolate', 'Verde Militar', 'Habano', 'Yute', 'Beige Oscuro', 'Mostaza', 'Azul', 'Bordó-Vino']
+    availableColors: ['Cobre', 'Negro', 'Beige Claro', 'Gris', 'Verde Oliva', 'Bordó', 'Marrón Chocolate', 'Verde Militar', 'Habano', 'Yute', 'Beige Oscuro', 'Mostaza', 'Azul', 'Vino']
   },
   {
     id: '102',
@@ -118,7 +118,7 @@ export const PRODUCTS: Product[] = [
     ],
     material: 'Cordón de polipropileno natural',
     careInstructions: 'Lavar con agua fría y jabón neutro. Dejar secar al aire libre.',
-    availableColors: ['Yute', 'Beige Claro', 'Beige Oscuro', 'Negro', 'Gris', 'Verde Oliva', 'Bordó', 'Marrón Chocolate', 'Verde Militar', 'Habano', 'Mostaza', 'Cobre', 'Azul', 'Bordó-Vino']
+    availableColors: ['Yute', 'Beige Claro', 'Beige Oscuro', 'Negro', 'Gris', 'Verde Oliva', 'Bordó', 'Marrón Chocolate', 'Verde Militar', 'Habano', 'Mostaza', 'Cobre', 'Azul', 'Vino']
   },
   {
     id: '103',
@@ -148,7 +148,7 @@ export const PRODUCTS: Product[] = [
     ],
     material: 'Cordón de polipropileno natural',
     careInstructions: 'Lavar con agua fría y jabón neutro. Dejar secar al aire libre.',
-    availableColors: ['Yute', 'Beige Claro', 'Beige Oscuro', 'Negro', 'Gris', 'Verde Oliva', 'Bordó', 'Marrón Chocolate', 'Verde Militar', 'Habano', 'Mostaza', 'Cobre', 'Azul', 'Bordó-Vino']
+    availableColors: ['Yute', 'Beige Claro', 'Beige Oscuro', 'Negro', 'Gris', 'Verde Oliva', 'Bordó', 'Marrón Chocolate', 'Verde Militar', 'Habano', 'Mostaza', 'Cobre', 'Azul', 'Vino']
   },
   {
     id: '201',
@@ -232,7 +232,7 @@ export const PRODUCTS: Product[] = [
     ],
     material: 'Cordón de polipropileno importado',
     careInstructions: 'Lavar con agua fría y jabón neutro. Dejar secar al aire libre.',
-    availableColors: ['Negro', 'Beige Claro', 'Verde Oliva', 'Marrón Chocolate', 'Gris', 'Bordó', 'Habano', 'Yute', 'Beige Oscuro', 'Mostaza', 'Cobre', 'Verde Militar', 'Azul', 'Bordó-Vino']
+    availableColors: ['Negro', 'Beige Claro', 'Verde Oliva', 'Marrón Chocolate', 'Gris', 'Bordó', 'Habano', 'Yute', 'Beige Oscuro', 'Mostaza', 'Cobre', 'Verde Militar', 'Azul', 'Vino']
   },
   {
     id: '402',
@@ -260,7 +260,7 @@ export const PRODUCTS: Product[] = [
     ],
     material: 'Cordón de polipropileno importado',
     careInstructions: 'Lavar con agua fría y jabón neutro. Dejar secar al aire libre.',
-    availableColors: ['Verde Oliva', 'Negro', 'Beige Claro', 'Marrón Chocolate', 'Gris', 'Bordó', 'Habano', 'Yute', 'Beige Oscuro', 'Mostaza', 'Cobre', 'Verde Militar', 'Azul', 'Bordó-Vino']
+    availableColors: ['Verde Oliva', 'Negro', 'Beige Claro', 'Marrón Chocolate', 'Gris', 'Bordó', 'Habano', 'Yute', 'Beige Oscuro', 'Mostaza', 'Cobre', 'Verde Militar', 'Azul', 'Vino']
   },
   {
     id: '403',
@@ -288,7 +288,7 @@ export const PRODUCTS: Product[] = [
     ],
     material: 'Cordón de polipropileno importado',
     careInstructions: 'Lavar con agua fría y jabón neutro. Dejar secar al aire libre.',
-    availableColors: ['Marrón Chocolate', 'Negro', 'Beige Claro', 'Verde Oliva', 'Gris', 'Bordó', 'Habano', 'Yute', 'Beige Oscuro', 'Mostaza', 'Cobre', 'Verde Militar', 'Azul', 'Bordó-Vino']
+    availableColors: ['Marrón Chocolate', 'Negro', 'Beige Claro', 'Verde Oliva', 'Gris', 'Bordó', 'Habano', 'Yute', 'Beige Oscuro', 'Mostaza', 'Cobre', 'Verde Militar', 'Azul', 'Vino']
   },
   {
     id: '404',
@@ -316,7 +316,7 @@ export const PRODUCTS: Product[] = [
     ],
     material: 'Cordón de polipropileno importado',
     careInstructions: 'Lavar con agua fría y jabón neutro. Dejar secar al aire libre.',
-    availableColors: ['Beige Claro', 'Negro', 'Verde Oliva', 'Marrón Chocolate', 'Gris', 'Bordó', 'Habano', 'Yute', 'Beige Oscuro', 'Mostaza', 'Cobre', 'Verde Militar', 'Azul', 'Bordó-Vino']
+    availableColors: ['Beige Claro', 'Negro', 'Verde Oliva', 'Marrón Chocolate', 'Gris', 'Bordó', 'Habano', 'Yute', 'Beige Oscuro', 'Mostaza', 'Cobre', 'Verde Militar', 'Azul', 'Vino']
   }
 ];
 

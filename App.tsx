@@ -152,7 +152,7 @@ const AppContent: React.FC = () => {
       { nombre: 'Verde Militar', color: '#4a5d23', imagen: '/images/colores/verde-militar.jpg' },
       { nombre: 'Azul', color: '#2c5f8d', imagen: '/images/colores/azul.jpg', isNew: true },
       { nombre: 'Gris', color: '#6b6b6b', imagen: '/images/colores/gris.jpg' },
-      { nombre: 'Bordó-Vino', color: '#5d2e46', imagen: '/images/colores/bordo-vino.jpg' }
+      { nombre: 'Vino', color: '#5d2e46', imagen: '/images/colores/bordo-vino.jpg' }
     ];
 
     return (
@@ -243,8 +243,16 @@ const AppContent: React.FC = () => {
 
           <div className="space-y-8">
             <div className="text-center space-y-2">
-              <h3 className="text-3xl serif italic text-[#7a8d4e]">Colores Disponibles</h3>
+              <h3 className="text-3xl serif italic text-[#7a8d4e]">Colores Disponibles Para Carteras</h3>
               <p className="text-gray-500 font-light">Elegí el color que mejor se adapte a tu estilo</p>
+            </div>
+
+            <div className="rounded-sm overflow-hidden border border-gray-200 shadow-sm">
+              <img
+                src="/images/menu/colores-cordones-carteras.jpg"
+                alt="Colores disponibles para carteras"
+                className="w-full h-auto"
+              />
             </div>
 
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
@@ -267,6 +275,49 @@ const AppContent: React.FC = () => {
                         Nuevo
                       </span>
                     )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="space-y-8">
+            <div className="text-center space-y-2">
+              <h3 className="text-3xl serif italic text-[#7a8d4e]">Colores Disponibles Para Pulseras</h3>
+              <p className="text-gray-500 font-light">Pulseras artesanales en variedad de colores</p>
+            </div>
+
+            <div className="rounded-sm overflow-hidden border border-gray-200 shadow-sm">
+              <img
+                src="/images/menu/colores-cordones-pulseras.jpg"
+                alt="Colores disponibles para pulseras"
+                className="w-full h-auto"
+              />
+            </div>
+
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+              {[
+                { nombre: 'Verde Claro', color: '#90c695' },
+                { nombre: 'Suela', color: '#d4a574' },
+                { nombre: 'Visón', color: '#9c8579' },
+                { nombre: 'Buarravino', color: '#722f37' },
+                { nombre: 'Verde Oscuro', color: '#2d5016' },
+                { nombre: 'Negro', color: '#1a1a1a' },
+                { nombre: 'Bordó', color: '#722f37' }
+              ].map((color, idx) => (
+                <div key={idx} className="group relative">
+                  <div className="aspect-square rounded-sm overflow-hidden border-2 border-gray-200 group-hover:border-[#7a8d4e] transition-all shadow-sm">
+                    <div
+                      className="w-full h-full flex items-center justify-center text-white font-light text-sm"
+                      style={{ backgroundColor: color.color }}
+                    >
+                      <span className="opacity-0 group-hover:opacity-100 transition-opacity bg-black/50 px-3 py-1 rounded-sm">
+                        {color.nombre}
+                      </span>
+                    </div>
+                  </div>
+                  <div className="mt-2 text-center">
+                    <p className="text-sm font-medium text-gray-700">{color.nombre}</p>
                   </div>
                 </div>
               ))}
