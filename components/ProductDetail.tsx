@@ -6,6 +6,13 @@ interface ProductDetailProps {
   product: Product;
 }
 
+const formatPrice = (price: number): string => {
+  return price.toLocaleString('es-AR', {
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0
+  });
+};
+
 const ProductDetail = ({ product }: ProductDetailProps) => {
   const navigate = useNavigate();
   const [selectedImage, setSelectedImage] = useState(product.images?.[0] || product.image);
@@ -106,7 +113,7 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
               </span>
             )}
             <h1 className="text-4xl md:text-5xl serif italic text-[#333]">{product.name}</h1>
-            <p className="text-3xl font-light text-gray-900">${product.price.toFixed(2)}</p>
+            <p className="text-3xl font-light text-gray-900">${formatPrice(product.price)}</p>
           </div>
 
           <p className="text-gray-600 leading-relaxed font-light text-lg italic">

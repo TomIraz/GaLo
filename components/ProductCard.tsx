@@ -5,6 +5,13 @@ interface ProductCardProps {
   product: Product;
 }
 
+const formatPrice = (price: number): string => {
+  return price.toLocaleString('es-AR', {
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0
+  });
+};
+
 const ProductCard = ({ product }: ProductCardProps) => {
   return (
     <div className="group flex flex-col gap-4">
@@ -27,7 +34,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
               {product.name}
             </h3>
           </Link>
-          <span className="text-gray-900 font-bold">${product.price.toFixed(2)}</span>
+          <span className="text-gray-900 font-bold">${formatPrice(product.price)}</span>
         </div>
         <p className="text-xs text-[#7a8d4e] font-bold uppercase tracking-wider">{product.category}</p>
       </div>
