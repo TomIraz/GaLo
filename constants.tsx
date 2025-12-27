@@ -99,8 +99,8 @@ export const PRODUCTS: Product[] = [
     images: [
       '/images/carteras/mini-mara/mini-mara-beige.jpg',
       '/images/carteras/mini-mara/mini-mara-beige-cerca.jpg',
-      '/images/carteras/mini-mara/mini-mera-beige-cierre.jpg',
-      '/images/carteras/mini-mara/mini-mera-herraje.jpg'
+      '/images/carteras/mini-mara/mini-mara-beige-cierre.jpg',
+      '/images/carteras/mini-mara/mini-mara-herraje.jpg'
     ],
     dimensions: {
       height: '20 cm',
