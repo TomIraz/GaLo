@@ -5,12 +5,12 @@ export const PRODUCTS: Product[] = [
   {
     id: '1',
     name: 'Cartera Eva',
-    price: 54.500,
+    price: 54500,
     category: 'Cordón de Polipropileno',
     description: 'Nuestra clásica de polipropileno. Resistente, lavable y perfecta para el uso diario. Tejido firme que no pierde la forma.',
-    image: '/images/carteras/eva/eva-gris.jpg.jpg',
+    image: '/images/carteras/eva/eva-gris.jpg',
     images: [
-      '/images/carteras/eva/eva-gris.jpg.jpg'
+      '/images/carteras/eva/eva-gris.jpg'
     ],
     dimensions: {
       height: '32 cm',
@@ -33,7 +33,7 @@ export const PRODUCTS: Product[] = [
   {
     id: '2',
     name: 'Cartera Cami',
-    price: 52.800,
+    price: 52800,
     category: 'Cordón de Polipropileno',
     description: 'Nuestra clásica de polipropileno. Resistente, lavable y perfecta para el uso diario. Tejido firme que no pierde la forma.',
     image: '/images/carteras/cami/cami-beige.jpg',
@@ -61,7 +61,7 @@ export const PRODUCTS: Product[] = [
   {
     id: '101',
     name: 'Mini Isa',
-    price: 37.000,
+    price: 37000,
     category: 'Minis',
     description: 'El mismo diseño de cordón en tamaño compacto. Ideal para llevar solo lo esencial con un toque artesanal.',
     image: '/images/carteras/mini-isa/mini-isa-verde.jpg',
@@ -92,7 +92,7 @@ export const PRODUCTS: Product[] = [
   {
     id: '102',
     name: 'Mini Mara',
-    price: 45.00,
+    price: 4500,
     category: 'Minis',
     description: 'Pequeña, ligera y elegante. El color crudo natural resalta la trama del tejido hecho a mano.',
     image: '/images/carteras/mini-mara/mara-beige.jpg',
@@ -123,7 +123,7 @@ export const PRODUCTS: Product[] = [
   {
     id: '103',
     name: 'Mini Tokio',
-    price: 45.00,
+    price: 4500,
     category: 'Minis',
     description: 'Pequeña, ligera y elegante. El color crudo natural resalta la trama del tejido hecho a mano.',
     image: '/images/carteras/mini-tokio/mini-tokio-marron.jpg',
@@ -153,7 +153,7 @@ export const PRODUCTS: Product[] = [
   {
     id: '201',
     name: 'Cinturón',
-    price: 18.000,
+    price: 18000,
     category: 'Accesorios',
     description: 'Cinturón elástico tejido manualmente. Hebilla metálica de alta calidad. Disponible en varios colores tierra.',
     image: '/images/accesorios/cinturones/cinturones-fondo-blanco.jpg',
@@ -182,7 +182,7 @@ export const PRODUCTS: Product[] = [
   {
     id: '301',
     name: 'Porta Celular',
-    price: 15.000,
+    price: 15000,
     category: 'Accesorios',
     description: 'Accesorio de cordón trenzado para llevar el celular con comodidad. Correa larga para usar cruzado.',
     image: '/images/accesorios/porta-celulares/porta-celulares-3.jpg',
@@ -211,7 +211,7 @@ export const PRODUCTS: Product[] = [
   {
     id: '301',
     name: 'Pulsera',
-    price: 15.000,
+    price: 15000,
     category: 'Accesorios',
     description: 'Accesorio de cordón trenzado para llevar el celular con comodidad. Correa larga para usar cruzado.',
     image: '/images/accesorios/pulseras/pulseras-colores.jpg',
