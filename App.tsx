@@ -1,5 +1,5 @@
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, useNavigate, useParams, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
@@ -8,6 +8,16 @@ import ProductDetail from './components/ProductDetail';
 import { Product, View, MaterialFilter } from './types';
 import { PRODUCTS } from './constants';
 import { useContactForm } from './hooks/useContactForm';
+
+const ScrollToTop: React.FC = () => {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+};
 
 const AppContent: React.FC = () => {
   const navigate = useNavigate();
@@ -446,6 +456,7 @@ const AppContent: React.FC = () => {
 
   return (
     <div className="min-h-screen">
+      <ScrollToTop />
       <Navbar />
 
       <main className="animate-in fade-in duration-500">
