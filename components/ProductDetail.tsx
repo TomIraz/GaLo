@@ -81,7 +81,7 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
           )}
 
           {/* Main Image - Right Side */}
-          <div className="flex-1 rounded-sm border border-gray-200 overflow-hidden order-1 lg:order-2">
+          <div className="rounded-sm border border-gray-200 overflow-hidden order-1 lg:order-2">
             <img
               key={imageKey}
               src={selectedImage}
