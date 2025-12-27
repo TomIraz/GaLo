@@ -95,7 +95,7 @@ export const PRODUCTS: Product[] = [
     price: 4500,
     category: 'Minis',
     description: 'Pequeña, ligera y elegante. El color crudo natural resalta la trama del tejido hecho a mano.',
-    image: '/images/carteras/mini-mara/mara-beige.jpg',
+    image: '/images/carteras/mini-mara/mini-mara-beige.jpg',
     images: [
       '/images/carteras/mini-mara/mini-mara-beige.jpg',
       '/images/carteras/mini-mara/mini-mara-beige-cerca.jpg',
