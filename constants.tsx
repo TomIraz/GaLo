@@ -158,8 +158,6 @@ export const PRODUCTS: Product[] = [
     description: 'Cinturón elástico tejido manualmente. Hebilla metálica de alta calidad. Disponible en varios colores tierra.',
     image: '/images/accesorios/cinturones/cinturones-fondo-blanco.jpg',
     images: [
-      '/images/accesorios/cinturones/cinturones-fondo-blanco.jpg',
-      '/images/accesorios/cinturones/cinturones-fondo-blanco.jpg',
       '/images/accesorios/cinturones/cinturones-fondo-blanco.jpg'
     ],
     dimensions: {
@@ -209,7 +207,7 @@ export const PRODUCTS: Product[] = [
     availableColors: ['Negro', 'Beige Claro', 'Verde Oliva', 'Marrón Chocolate', 'Gris', 'Bordó']
   },
   {
-    id: '301',
+    id: '401',
     name: 'Pulsera',
     price: 15000,
     category: 'Accesorios',
