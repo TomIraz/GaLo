@@ -9,48 +9,13 @@ import { Product } from './types';
 export const PRODUCTS: Product[] = [
   {
     id: '1',
-    name: 'Cartera Ema Verde Oliva',
-    price: 90.00,
-    category: 'Cordón de Polipropileno',
-    description: 'Diseño amplio de hombro con detalle de cuero en la base de la correa. Textura rica y color vibrante.',
-    image: '/images/carteras/ema-verde.jpg',
-    images: [
-      '/images/carteras/ema-verde.jpg',
-      '/images/carteras/ema-verde.jpg',
-      '/images/carteras/ema-verde.jpg',
-      '/images/carteras/ema-verde.jpg',
-      '/images/carteras/ema-verde.jpg'
-    ],
-    dimensions: {
-      height: '35 cm',
-      width: '40 cm',
-      depth: '12 cm',
-      strap: 'Correa: 60 cm (regulable)'
-    },
-    features: [
-      'Cierre magnético de alta calidad',
-      'Forro interior de tela suave',
-      'Bolsillo interno con cierre',
-      'Correa de cuero 100% genuino',
-      'Tejido 100% a mano',
-      'Lavable con agua fría'
-    ],
-    material: 'Cordón de polipropileno importado',
-    careInstructions: 'Lavar con agua fría y jabón neutro. Dejar secar al aire libre. No usar lavadora.',
-    availableColors: ['Verde Oliva', 'Negro', 'Beige Claro', 'Gris', 'Bordó', 'Marrón Chocolate', 'Verde Militar', 'Habano', 'Yute', 'Beige Oscuro', 'Mostaza', 'Cobre', 'Azul', 'Bordó-Vino']
-  },
-  {
-    id: '2',
-    name: 'Cartera Eva Gris',
+    name: 'Cartera Eva',
     price: 75.00,
     category: 'Cordón de Polipropileno',
     description: 'Nuestra clásica de polipropileno. Resistente, lavable y perfecta para el uso diario. Tejido firme que no pierde la forma.',
-    image: '/images/carteras/eva-gris.jpg',
+    image: '/images/carteras/eva/eva-gris.jpg.jpg',
     images: [
-      '/images/carteras/eva-gris.jpg',
-      '/images/carteras/eva-gris.jpg',
-      '/images/carteras/eva-gris.jpg',
-      '/images/carteras/eva-gris.jpg'
+      '/images/carteras/eva/eva-gris.jpg.jpg'
     ],
     dimensions: {
       height: '32 cm',
@@ -71,17 +36,14 @@ export const PRODUCTS: Product[] = [
     availableColors: ['Gris', 'Negro', 'Beige Claro', 'Verde Oliva', 'Bordó', 'Marrón Chocolate', 'Verde Militar', 'Habano', 'Yute', 'Beige Oscuro', 'Mostaza', 'Cobre', 'Azul', 'Bordó-Vino']
   },
   {
-    id: '3',
-    name: 'Cartera Cami Beige',
+    id: '2',
+    name: 'Cartera Cami',
     price: 75.00,
     category: 'Cordón de Polipropileno',
     description: 'Nuestra clásica de polipropileno. Resistente, lavable y perfecta para el uso diario. Tejido firme que no pierde la forma.',
-    image: '/images/carteras/cami-beige.jpg',
+    image: '/images/carteras/cami/cami-beige.jpg',
     images: [
-      '/images/carteras/cami-beige.jpg',
-      '/images/carteras/cami-beige.jpg',
-      '/images/carteras/cami-beige.jpg',
-      '/images/carteras/cami-beige.jpg'
+      '/images/carteras/cami/cami-beige.jpg'
     ],
     dimensions: {
       height: '32 cm',
@@ -102,47 +64,16 @@ export const PRODUCTS: Product[] = [
     availableColors: ['Beige Claro', 'Beige Oscuro', 'Yute', 'Negro', 'Gris', 'Verde Oliva', 'Bordó', 'Marrón Chocolate', 'Verde Militar', 'Habano', 'Mostaza', 'Cobre', 'Azul', 'Bordó-Vino']
   },
   {
-    id: '5',
-    name: 'Cinturón',
-    price: 25.00,
-    category: 'Accesorios',
-    description: 'Cinturón elástico tejido manualmente. Hebilla metálica de alta calidad. Disponible en varios colores tierra.',
-    image: '/images/accesorios/cinturones-fondo-blanco.jpg',
-    images: [
-      '/images/accesorios/cinturones-fondo-blanco.jpg',
-      '/images/accesorios/cinturones-fondo-blanco.jpg',
-      '/images/accesorios/cinturones-fondo-blanco.jpg'
-    ],
-    dimensions: {
-      height: '4 cm',
-      width: '85 cm',
-      depth: '0.5 cm',
-      strap: 'Ajustable hasta 95 cm'
-    },
-    features: [
-      'Hebilla metálica resistente',
-      'Tejido elástico',
-      'Disponible en varios colores',
-      'Tejido a mano',
-      'Unisex'
-    ],
-    material: 'Cordón de polipropileno elástico',
-    careInstructions: 'Lavar a mano con agua fría. Secar al aire.',
-    availableColors: ['Negro', 'Marrón Chocolate', 'Habano', 'Beige Oscuro', 'Gris', 'Verde Militar']
-  },
-  {
-    id: '4',
-    name: 'Mini Gala Terracota',
+    id: '101',
+    name: 'Mini Isa',
     price: 45.00,
     category: 'Minis',
     description: 'El mismo diseño de cordón en tamaño compacto. Ideal para llevar solo lo esencial con un toque artesanal.',
-    image: '/images/carteras/mini-gala-terracota.jpg',
+    image: '/images/carteras/mini-isa/mini-isa-verde.jpg',
     images: [
-      '/images/carteras/mini-gala-terracota.jpg',
-      '/images/carteras/mini-gala-terracota.jpg',
-      '/images/carteras/mini-gala-terracota.jpg',
-      '/images/carteras/mini-gala-terracota.jpg',
-      '/images/carteras/mini-gala-terracota.jpg'
+      '/images/carteras/mini-isa/mini-isa-verde.jpg',
+      '/images/carteras/mini-isa/mini-isa/mini-isa-verde-2.jpg',
+      '/images/carteras/mini-isa/mini-isa-verde-abierta-1.jpg'
     ],
     isNew: true,
     dimensions: {
@@ -164,36 +95,7 @@ export const PRODUCTS: Product[] = [
     availableColors: ['Cobre', 'Negro', 'Beige Claro', 'Gris', 'Verde Oliva', 'Bordó', 'Marrón Chocolate', 'Verde Militar', 'Habano', 'Yute', 'Beige Oscuro', 'Mostaza', 'Azul', 'Bordó-Vino']
   },
   {
-    id: '6',
-    name: 'Porta Celular Nudo',
-    price: 30.00,
-    category: 'Accesorios',
-    description: 'Accesorio de cordón trenzado para llevar el celular con comodidad. Correa larga para usar cruzado.',
-    image: '/images/accesorios/porta-celular-nudo.jpg',
-    images: [
-      '/images/accesorios/porta-celular-nudo.jpg',
-      '/images/accesorios/porta-celular-nudo.jpg',
-      '/images/accesorios/porta-celular-nudo.jpg'
-    ],
-    dimensions: {
-      height: '18 cm',
-      width: '11 cm',
-      depth: '2 cm',
-      strap: 'Correa: 130 cm'
-    },
-    features: [
-      'Compartimento para celular',
-      'Cierre con solapa',
-      'Correa larga ajustable',
-      'Diseño cruzado',
-      'Tejido resistente'
-    ],
-    material: 'Cordón de polipropileno trenzado',
-    careInstructions: 'Limpiar con paño húmedo. Lavar a mano si es necesario.',
-    availableColors: ['Negro', 'Beige Claro', 'Verde Oliva', 'Marrón Chocolate', 'Gris', 'Bordó']
-  },
-  {
-    id: '7',
+    id: '102',
     name: 'Mini Cordón Crudo',
     price: 45.00,
     category: 'Minis',
@@ -224,33 +126,62 @@ export const PRODUCTS: Product[] = [
     availableColors: ['Yute', 'Beige Claro', 'Beige Oscuro', 'Negro', 'Gris', 'Verde Oliva', 'Bordó', 'Marrón Chocolate', 'Verde Militar', 'Habano', 'Mostaza', 'Cobre', 'Azul', 'Bordó-Vino']
   },
   {
-    id: '8',
-    name: 'Belt Pack GaLo',
-    price: 55.00,
+    id: '201',
+    name: 'Cinturón',
+    price: 25.00,
     category: 'Accesorios',
-    description: 'Set de cinturón y pequeño charm decorativo para personalizar tus looks.',
-    image: '/images/accesorios/belt-pack-galo.jpg',
+    description: 'Cinturón elástico tejido manualmente. Hebilla metálica de alta calidad. Disponible en varios colores tierra.',
+    image: '/images/accesorios/cinturones-fondo-blanco.jpg',
     images: [
-      '/images/accesorios/belt-pack-galo.jpg',
-      '/images/accesorios/belt-pack-galo.jpg',
-      '/images/accesorios/belt-pack-galo.jpg'
+      '/images/accesorios/cinturones-fondo-blanco.jpg',
+      '/images/accesorios/cinturones-fondo-blanco.jpg',
+      '/images/accesorios/cinturones-fondo-blanco.jpg'
     ],
     dimensions: {
       height: '4 cm',
       width: '85 cm',
-      depth: '1 cm',
-      strap: 'Incluye charm decorativo'
+      depth: '0.5 cm',
+      strap: 'Ajustable hasta 95 cm'
     },
     features: [
-      'Cinturón tejido a mano',
-      'Charm decorativo incluido',
-      'Hebilla metálica',
-      'Set completo',
-      'Diseño exclusivo GaLo'
+      'Hebilla metálica resistente',
+      'Tejido elástico',
+      'Disponible en varios colores',
+      'Tejido a mano',
+      'Unisex'
     ],
-    material: 'Cordón de polipropileno y detalles metálicos',
+    material: 'Cordón de polipropileno elástico',
     careInstructions: 'Lavar a mano con agua fría. Secar al aire.',
-    availableColors: ['Negro', 'Marrón Chocolate', 'Beige Oscuro', 'Verde Militar', 'Gris']
+    availableColors: ['Negro', 'Marrón Chocolate', 'Habano', 'Beige Oscuro', 'Gris', 'Verde Militar']
+  },
+  {
+    id: '301',
+    name: 'Porta Celular',
+    price: 30.00,
+    category: 'Accesorios',
+    description: 'Accesorio de cordón trenzado para llevar el celular con comodidad. Correa larga para usar cruzado.',
+    image: '/images/accesorios/porta-celular-nudo.jpg',
+    images: [
+      '/images/accesorios/porta-celular-nudo.jpg',
+      '/images/accesorios/porta-celular-nudo.jpg',
+      '/images/accesorios/porta-celular-nudo.jpg'
+    ],
+    dimensions: {
+      height: '18 cm',
+      width: '11 cm',
+      depth: '2 cm',
+      strap: 'Correa: 130 cm'
+    },
+    features: [
+      'Compartimento para celular',
+      'Cierre con solapa',
+      'Correa larga ajustable',
+      'Diseño cruzado',
+      'Tejido resistente'
+    ],
+    material: 'Cordón de polipropileno trenzado',
+    careInstructions: 'Limpiar con paño húmedo. Lavar a mano si es necesario.',
+    availableColors: ['Negro', 'Beige Claro', 'Verde Oliva', 'Marrón Chocolate', 'Gris', 'Bordó']
   }
 ];
 
