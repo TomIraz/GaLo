@@ -212,10 +212,10 @@ export const PRODUCTS: Product[] = [
     price: 4500,
     category: 'Accesorios',
     description: 'Pulsera artesanal tejida a mano en cordón de polipropileno. Diseño elegante y resistente al agua.',
-    image: '/images/accesorios/pulseras/paris/pulsera-paris-negra.png',
+    image: '/images/accesorios/pulseras/paris/pulsera-paris-negra.jpg',
     images: [
-      '/images/accesorios/pulseras/paris/pulsera-paris-negra.png',
-      '/images/accesorios/pulseras/paris/pulsera-paris-negra-2.png'
+      '/images/accesorios/pulseras/paris/pulsera-paris-negra.jpg',
+      '/images/accesorios/pulseras/paris/pulsera-paris-negra-2.jpg'
     ],
     dimensions: {
       height: '2 cm',
@@ -240,10 +240,10 @@ export const PRODUCTS: Product[] = [
     price: 4500,
     category: 'Accesorios',
     description: 'Pulsera artesanal tejida a mano en cordón de polipropileno. Diseño elegante y resistente al agua.',
-    image: '/images/accesorios/pulseras/asia/pulsera-asia-verde.png',
+    image: '/images/accesorios/pulseras/asia/pulsera-asia-verde.jpg',
     images: [
-      '/images/accesorios/pulseras/asia/pulsera-asia-verde.png',
-      '/images/accesorios/pulseras/asia/pulsera-asia-verde-2.png'
+      '/images/accesorios/pulseras/asia/pulsera-asia-verde.jpg',
+      '/images/accesorios/pulseras/asia/pulsera-asia-verde-2.jpg'
     ],
     dimensions: {
       height: '2 cm',
@@ -268,10 +268,10 @@ export const PRODUCTS: Product[] = [
     price: 4500,
     category: 'Accesorios',
     description: 'Pulsera artesanal tejida a mano en cordón de polipropileno. Diseño elegante y resistente al agua.',
-    image: '/images/accesorios/pulseras/berlin/pulsera-berlin-marron.png',
+    image: '/images/accesorios/pulseras/berlin/pulsera-berlin-marron.jpg',
     images: [
-      '/images/accesorios/pulseras/berlin/pulsera-berlin-marron.png',
-      '/images/accesorios/pulseras/berlin/pulsera-berlin-marron-2.png'
+      '/images/accesorios/pulseras/berlin/pulsera-berlin-marron.jpg',
+      '/images/accesorios/pulseras/berlin/pulsera-berlin-marron-2.jpg'
     ],
     dimensions: {
       height: '2 cm',
@@ -296,10 +296,10 @@ export const PRODUCTS: Product[] = [
     price: 4500,
     category: 'Accesorios',
     description: 'Pulsera artesanal tejida a mano en cordón de polipropileno. Diseño elegante y resistente al agua.',
-    image: '/images/accesorios/pulseras/india/pulsera-india-beige.png',
+    image: '/images/accesorios/pulseras/india/pulsera-india-beige.jpg',
     images: [
-      '/images/accesorios/pulseras/india/pulsera-india-beige.png',
-      '/images/accesorios/pulseras/india/pulsera-india-beige-2.png'
+      '/images/accesorios/pulseras/india/pulsera-india-beige.jpg',
+      '/images/accesorios/pulseras/india/pulsera-india-beige-2.jpg'
     ],
     dimensions: {
       height: '2 cm',
