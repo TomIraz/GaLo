@@ -57,14 +57,15 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
         {/* LEFT: Image Gallery */}
         <div className="space-y-4">
           {/* Main Image */}
-          <div className="aspect-square bg-gray-100 rounded-sm overflow-hidden border border-gray-200">
+          <div className="w-full bg-gray-50 rounded-sm border border-gray-200 flex items-center justify-center" style={{ minHeight: '500px', maxHeight: '700px' }}>
             <img
               key={imageKey}
               src={selectedImage}
               alt={product.name}
-              className="w-full h-full object-cover transition-all duration-500 ease-out"
+              className="w-full h-auto object-contain transition-all duration-500 ease-out"
               style={{
-                animation: 'fadeInZoom 0.5s ease-out'
+                animation: 'fadeInZoom 0.5s ease-out',
+                maxHeight: '700px'
               }}
             />
           </div>
