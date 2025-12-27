@@ -55,23 +55,10 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-20">
         {/* LEFT: Image Gallery */}
-        <div className="space-y-4">
-          {/* Main Image */}
-          <div className="w-full rounded-sm border border-gray-200 overflow-hidden">
-            <img
-              key={imageKey}
-              src={selectedImage}
-              alt={product.name}
-              className="w-full h-auto transition-all duration-500 ease-out"
-              style={{
-                animation: 'fadeInZoom 0.5s ease-out'
-              }}
-            />
-          </div>
-
-          {/* Thumbnail Grid */}
+        <div className="flex flex-col lg:flex-row gap-4">
+          {/* Thumbnail Grid - Left Side */}
           {product.images && product.images.length > 1 && (
-            <div className="grid grid-cols-5 gap-2">
+            <div className="flex lg:flex-col gap-2 order-2 lg:order-1">
               {product.images.map((img, idx) => (
                 <button
                   key={idx}
@@ -79,7 +66,7 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
                     setSelectedImage(img);
                     setImageKey(prev => prev + 1);
                   }}
-                  className={`aspect-square rounded-sm overflow-hidden border-2 transition-all hover:border-[#7a8d4e]/60 ${
+                  className={`aspect-square rounded-sm overflow-hidden border-2 transition-all hover:border-[#7a8d4e]/60 w-20 h-20 flex-shrink-0 ${
                     selectedImage === img ? 'border-[#7a8d4e] ring-2 ring-[#7a8d4e]/20' : 'border-gray-200'
                   }`}
                 >
@@ -92,6 +79,19 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
               ))}
             </div>
           )}
+
+          {/* Main Image - Right Side */}
+          <div className="flex-1 rounded-sm border border-gray-200 overflow-hidden order-1 lg:order-2">
+            <img
+              key={imageKey}
+              src={selectedImage}
+              alt={product.name}
+              className="w-full h-auto transition-all duration-500 ease-out"
+              style={{
+                animation: 'fadeInZoom 0.5s ease-out'
+              }}
+            />
+          </div>
         </div>
 
         {/* RIGHT: Product Info */}
