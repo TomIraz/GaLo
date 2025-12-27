@@ -10,13 +10,13 @@ const ProductCard = ({ product }: ProductCardProps) => {
     <div className="group flex flex-col gap-4">
       <Link
         to={`/producto/${product.id}`}
-        className="aspect-[4/5] bg-gray-50 cursor-pointer relative w-full block flex items-center justify-center"
+        className="w-full cursor-pointer relative block overflow-hidden rounded-sm"
         aria-label={`Ver detalles de ${product.name}`}
       >
         <img
           src={product.image}
           alt={`${product.name} - ${product.description}`}
-          className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
+          className="w-full h-auto transition-transform duration-500 group-hover:scale-105"
         />
       </Link>
 
