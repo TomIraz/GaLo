@@ -297,10 +297,10 @@ const AppContent: React.FC = () => {
 
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
               {[
-                { nombre: 'Verde Claro', color: '#90c695' },
+                { nombre: 'Verde Claro', color: '#2FD63E' },
                 { nombre: 'Suela', color: '#d4a574' },
                 { nombre: 'Visón', color: '#9c8579' },
-                { nombre: 'Buarravino', color: '#722f37' },
+                { nombre: 'Buarravino', color: '#4D2F31' },
                 { nombre: 'Verde Oscuro', color: '#2d5016' },
                 { nombre: 'Negro', color: '#1a1a1a' },
                 { nombre: 'Bordó', color: '#722f37' }
