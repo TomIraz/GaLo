@@ -92,7 +92,7 @@ export const PRODUCTS: Product[] = [
   {
     id: '102',
     name: 'Mini Mara',
-    price: 4500,
+    price: 36500,
     category: 'Minis',
     description: 'Pequeña, ligera y elegante. El color crudo natural resalta la trama del tejido hecho a mano.',
     image: '/images/carteras/mini-mara/mini-mara-beige.jpg',
@@ -123,7 +123,7 @@ export const PRODUCTS: Product[] = [
   {
     id: '103',
     name: 'Mini Tokio',
-    price: 4500,
+    price: 37000,
     category: 'Minis',
     description: 'Pequeña, ligera y elegante. El color crudo natural resalta la trama del tejido hecho a mano.',
     image: '/images/carteras/mini-tokio/mini-tokio-marron.jpg',
@@ -208,32 +208,115 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: '401',
-    name: 'Pulsera',
-    price: 15000,
+    name: 'Pulsera Paris',
+    price: 4500,
     category: 'Accesorios',
-    description: 'Accesorio de cordón trenzado para llevar el celular con comodidad. Correa larga para usar cruzado.',
-    image: '/images/accesorios/pulseras/pulseras-colores.jpg',
+    description: 'Pulsera artesanal tejida a mano en cordón de polipropileno. Diseño elegante y resistente al agua.',
+    image: '/images/accesorios/pulseras/paris/pulsera-paris-negra.png',
     images: [
-      '/images/accesorios/pulseras/pulseras-colores.jpg',
-      '/images/accesorios/pulseras/pulseras-colores.jpg',
-      '/images/accesorios/pulseras/pulseras-colores.jpg'
+      '/images/accesorios/pulseras/paris/pulsera-paris-negra.png',
+      '/images/accesorios/pulseras/paris/pulsera-paris-negra-2.png'
     ],
     dimensions: {
-      height: '18 cm',
-      width: '11 cm',
-      depth: '2 cm',
-      strap: 'Correa: 130 cm'
+      height: '2 cm',
+      width: '18 cm',
+      depth: '0.5 cm',
+      strap: 'Ajustable'
     },
     features: [
-      'Compartimento para celular',
-      'Cierre con solapa',
-      'Correa larga ajustable',
-      'Diseño cruzado',
-      'Tejido resistente'
+      'Tejido a mano',
+      'Material resistente al agua',
+      'Cierre ajustable',
+      'Diseño minimalista',
+      'Liviana y cómoda'
     ],
-    material: 'Cordón de polipropileno trenzado',
-    careInstructions: 'Limpiar con paño húmedo. Lavar a mano si es necesario.',
-    availableColors: ['Negro', 'Beige Claro', 'Verde Oliva', 'Marrón Chocolate', 'Gris', 'Bordó']
+    material: 'Cordón de polipropileno importado',
+    careInstructions: 'Lavar con agua fría y jabón neutro. Dejar secar al aire libre.',
+    availableColors: ['Negro', 'Beige Claro', 'Verde Oliva', 'Marrón Chocolate', 'Gris', 'Bordó', 'Habano', 'Yute', 'Beige Oscuro', 'Mostaza', 'Cobre', 'Verde Militar', 'Azul', 'Bordó-Vino']
+  },
+  {
+    id: '402',
+    name: 'Pulsera Asia',
+    price: 4500,
+    category: 'Accesorios',
+    description: 'Pulsera artesanal tejida a mano en cordón de polipropileno. Diseño elegante y resistente al agua.',
+    image: '/images/accesorios/pulseras/asia/pulsera-asia-verde.png',
+    images: [
+      '/images/accesorios/pulseras/asia/pulsera-asia-verde.png',
+      '/images/accesorios/pulseras/asia/pulsera-asia-verde-2.png'
+    ],
+    dimensions: {
+      height: '2 cm',
+      width: '18 cm',
+      depth: '0.5 cm',
+      strap: 'Ajustable'
+    },
+    features: [
+      'Tejido a mano',
+      'Material resistente al agua',
+      'Cierre ajustable',
+      'Diseño minimalista',
+      'Liviana y cómoda'
+    ],
+    material: 'Cordón de polipropileno importado',
+    careInstructions: 'Lavar con agua fría y jabón neutro. Dejar secar al aire libre.',
+    availableColors: ['Verde Oliva', 'Negro', 'Beige Claro', 'Marrón Chocolate', 'Gris', 'Bordó', 'Habano', 'Yute', 'Beige Oscuro', 'Mostaza', 'Cobre', 'Verde Militar', 'Azul', 'Bordó-Vino']
+  },
+  {
+    id: '403',
+    name: 'Pulsera Berlin',
+    price: 4500,
+    category: 'Accesorios',
+    description: 'Pulsera artesanal tejida a mano en cordón de polipropileno. Diseño elegante y resistente al agua.',
+    image: '/images/accesorios/pulseras/berlin/pulsera-berlin-marron.png',
+    images: [
+      '/images/accesorios/pulseras/berlin/pulsera-berlin-marron.png',
+      '/images/accesorios/pulseras/berlin/pulsera-berlin-marron-2.png'
+    ],
+    dimensions: {
+      height: '2 cm',
+      width: '18 cm',
+      depth: '0.5 cm',
+      strap: 'Ajustable'
+    },
+    features: [
+      'Tejido a mano',
+      'Material resistente al agua',
+      'Cierre ajustable',
+      'Diseño minimalista',
+      'Liviana y cómoda'
+    ],
+    material: 'Cordón de polipropileno importado',
+    careInstructions: 'Lavar con agua fría y jabón neutro. Dejar secar al aire libre.',
+    availableColors: ['Marrón Chocolate', 'Negro', 'Beige Claro', 'Verde Oliva', 'Gris', 'Bordó', 'Habano', 'Yute', 'Beige Oscuro', 'Mostaza', 'Cobre', 'Verde Militar', 'Azul', 'Bordó-Vino']
+  },
+  {
+    id: '404',
+    name: 'Pulsera India',
+    price: 4500,
+    category: 'Accesorios',
+    description: 'Pulsera artesanal tejida a mano en cordón de polipropileno. Diseño elegante y resistente al agua.',
+    image: '/images/accesorios/pulseras/india/pulsera-india-beige.png',
+    images: [
+      '/images/accesorios/pulseras/india/pulsera-india-beige.png',
+      '/images/accesorios/pulseras/india/pulsera-india-beige-2.png'
+    ],
+    dimensions: {
+      height: '2 cm',
+      width: '18 cm',
+      depth: '0.5 cm',
+      strap: 'Ajustable'
+    },
+    features: [
+      'Tejido a mano',
+      'Material resistente al agua',
+      'Cierre ajustable',
+      'Diseño minimalista',
+      'Liviana y cómoda'
+    ],
+    material: 'Cordón de polipropileno importado',
+    careInstructions: 'Lavar con agua fría y jabón neutro. Dejar secar al aire libre.',
+    availableColors: ['Beige Claro', 'Negro', 'Verde Oliva', 'Marrón Chocolate', 'Gris', 'Bordó', 'Habano', 'Yute', 'Beige Oscuro', 'Mostaza', 'Cobre', 'Verde Militar', 'Azul', 'Bordó-Vino']
   }
 ];
 
