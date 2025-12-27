@@ -249,7 +249,7 @@ const AppContent: React.FC = () => {
 
             <div className="rounded-sm overflow-hidden border border-gray-200 shadow-sm">
               <img
-                src="/images/menu/colores-cordones-carteras.jpg"
+                src="/images/menu/colores-carteras.jpg"
                 alt="Colores disponibles para carteras"
                 className="w-full h-auto"
               />
@@ -289,7 +289,7 @@ const AppContent: React.FC = () => {
 
             <div className="rounded-sm overflow-hidden border border-gray-200 shadow-sm">
               <img
-                src="/images/menu/colores-cordones-pulseras.jpg"
+                src="/images/menu/colores-pulseras.jpg"
                 alt="Colores disponibles para pulseras"
                 className="w-full h-auto"
               />
