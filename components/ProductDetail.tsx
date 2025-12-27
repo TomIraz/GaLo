@@ -55,7 +55,7 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-20">
         {/* LEFT: Image Gallery */}
-        <div className="flex flex-col lg:flex-row gap-4">
+        <div className="flex flex-col lg:flex-row gap-4 lg:items-start">
           {/* Thumbnail Grid - Left Side */}
           {product.images && product.images.length > 1 && (
             <div className="flex lg:flex-col gap-2 order-2 lg:order-1">
@@ -81,7 +81,7 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
           )}
 
           {/* Main Image - Right Side */}
-          <div className="rounded-sm border border-gray-200 overflow-hidden order-1 lg:order-2">
+          <div className="rounded-sm border border-gray-200 overflow-hidden order-1 lg:order-2 w-full lg:w-auto">
             <img
               key={imageKey}
               src={selectedImage}
