@@ -52,8 +52,6 @@ class GoogleSheetsService {
     const lines = csv.trim().split('\n');
     const priceMap = new Map<string, PriceData>();
 
-    console.log('Parsing CSV, total lines:', lines.length);
-
     // Saltar la primera línea (headers)
     for (let i = 1; i < lines.length; i++) {
       const line = lines[i].trim();
@@ -68,7 +66,6 @@ class GoogleSheetsService {
       const offset = parts[0] === '' ? 1 : 0;
 
       if (parts.length < 5 + offset) {
-        console.warn('Skipping line (not enough columns):', line);
         continue;
       }
 
@@ -79,19 +76,15 @@ class GoogleSheetsService {
 
       // Validar datos
       if (productId && !Number.isNaN(price) && price > 0) {
-        console.log(`Parsed product: ID=${productId}, Price=${price}, Active=${active}`);
         priceMap.set(productId, {
           productId,
           price,
           lastUpdated,
           active
         });
-      } else {
-        console.warn('Skipping line (invalid data):', { productId, price, active });
       }
     }
 
-    console.log('Total products parsed:', priceMap.size);
     return priceMap;
   }
 
@@ -141,25 +134,18 @@ class GoogleSheetsService {
 
     try {
       const url = this.buildSheetUrl();
-      console.log('Fetching prices from:', url);
 
       const response = await fetch(url, {
         method: 'GET',
         cache: 'no-cache',
-        redirect: 'follow' // Seguir redirects automáticamente
+        redirect: 'follow'
       });
-
-      console.log('Response status:', response.status);
-      console.log('Response URL:', response.url);
-      console.log('Response type:', response.type);
 
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
 
       const csvData = await response.text();
-      console.log('CSV data length:', csvData.length);
-      console.log('CSV data preview:', csvData.substring(0, 300));
 
       const priceMap = this.parseCsvToPriceData(csvData);
 
@@ -179,7 +165,6 @@ class GoogleSheetsService {
 
       // Fallback: intentar usar caché local (aunque esté expirado)
       if (localCache && localCache.size > 0) {
-        console.log('Usando caché local como respaldo');
         this.memoryCache = localCache;
         return localCache;
       }
