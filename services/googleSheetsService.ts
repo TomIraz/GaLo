@@ -34,7 +34,7 @@ class GoogleSheetsService {
     if (publishedMatch) {
       // Para hojas publicadas en la web como CSV
       // Archivo → Compartir → Publicar en la web → CSV
-      return `https://docs.google.com/spreadsheets/d/e/${publishedMatch[0]}/pub?output=csv`;
+      return `https://docs.google.com/spreadsheets/d/e/${publishedMatch[0]}/pub?output=csv&gid=${gid}`;
     }
 
     // Detectar si es una URL regular /d/{ID}/
@@ -45,7 +45,7 @@ class GoogleSheetsService {
 
     // IMPORTANTE: Para que esto funcione, la hoja debe estar "Publicada en la web"
     // Archivo → Compartir → Publicar en la web → Publicar
-    return `https://docs.google.com/spreadsheets/d/${cleanSheetId}/export?format=csv`;
+    return `https://docs.google.com/spreadsheets/d/${cleanSheetId}/export?format=csv&gid=${gid}`;
   }
 
   private parseCsvToPriceData(csv: string): Map<string, PriceData> {
@@ -126,17 +126,51 @@ class GoogleSheetsService {
 
     try {
       const url = this.buildSheetUrl();
+      console.log('Fetching prices from:', url);
+
       const response = await fetch(url, {
         method: 'GET',
         cache: 'no-cache',
-        redirect: 'follow' // Seguir redirects automáticamente
+        redirect: 'manual' // No seguir redirects automáticamente
       });
+
+      console.log('Response status:', response.status);
+      console.log('Response type:', response.type);
+
+      // Si hay redirect, seguirlo manualmente
+      if (response.status === 307 || response.status === 301 || response.status === 302) {
+        const redirectUrl = response.headers.get('Location');
+        console.log('Redirect to:', redirectUrl);
+
+        if (redirectUrl) {
+          const redirectResponse = await fetch(redirectUrl, {
+            method: 'GET',
+            cache: 'no-cache'
+          });
+
+          if (!redirectResponse.ok) {
+            throw new Error(`HTTP error after redirect! status: ${redirectResponse.status}`);
+          }
+
+          const csvData = await redirectResponse.text();
+          console.log('CSV data received:', csvData.substring(0, 200));
+          const priceMap = this.parseCsvToPriceData(csvData);
+
+          // Actualizar cachés
+          this.memoryCache = priceMap;
+          this.lastFetchTime = Date.now();
+          this.saveToLocalStorage(priceMap);
+
+          return priceMap;
+        }
+      }
 
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
 
       const csvData = await response.text();
+      console.log('CSV data received:', csvData.substring(0, 200));
       const priceMap = this.parseCsvToPriceData(csvData);
 
       // Verificar que obtuvimos datos válidos
