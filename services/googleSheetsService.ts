@@ -32,7 +32,8 @@ class GoogleSheetsService {
     // Detectar si es un ID de hoja publicada (2PACX-...)
     const publishedMatch = sheetId.match(/2PACX-[a-zA-Z0-9_-]+/);
     if (publishedMatch) {
-      // Para hojas publicadas, usar el endpoint /pub
+      // Para hojas publicadas en la web como CSV
+      // Archivo → Compartir → Publicar en la web → CSV
       return `https://docs.google.com/spreadsheets/d/e/${publishedMatch[0]}/pub?output=csv&gid=${gid}`;
     }
 
@@ -44,7 +45,7 @@ class GoogleSheetsService {
 
     // IMPORTANTE: Para que esto funcione, la hoja debe estar "Publicada en la web"
     // Archivo → Compartir → Publicar en la web → Publicar
-    return `https://docs.google.com/spreadsheets/d/${cleanSheetId}/gviz/tq?tqx=out:csv&gid=${gid}`;
+    return `https://docs.google.com/spreadsheets/d/${cleanSheetId}/export?format=csv&gid=${gid}`;
   }
 
   private parseCsvToPriceData(csv: string): Map<string, PriceData> {
