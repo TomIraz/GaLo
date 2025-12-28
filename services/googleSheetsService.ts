@@ -28,6 +28,15 @@ class GoogleSheetsService {
 
     // Si sheetId es una URL completa, extraer solo el ID
     let cleanSheetId = sheetId;
+
+    // Detectar si es un ID de hoja publicada (2PACX-...)
+    const publishedMatch = sheetId.match(/2PACX-[a-zA-Z0-9_-]+/);
+    if (publishedMatch) {
+      // Para hojas publicadas, usar el endpoint /pub
+      return `https://docs.google.com/spreadsheets/d/e/${publishedMatch[0]}/pub?output=csv&gid=${gid}`;
+    }
+
+    // Detectar si es una URL regular /d/{ID}/
     const urlMatch = sheetId.match(/\/d\/([a-zA-Z0-9-_]+)/);
     if (urlMatch) {
       cleanSheetId = urlMatch[1];
