@@ -13,6 +13,8 @@ const formatPrice = (price: number): string => {
 };
 
 const ProductCard = ({ product }: ProductCardProps) => {
+  console.log(`🎴 ProductCard rendering - ${product.name}: $${product.price}`);
+
   return (
     <div className="group flex flex-col gap-4">
       <Link

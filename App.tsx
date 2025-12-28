@@ -182,7 +182,7 @@ const AppContent: React.FC = () => {
       );
     }
     return base;
-  }, [location.pathname, searchQuery, categoryFilter]);
+  }, [PRODUCTS, location.pathname, searchQuery, categoryFilter]);
 
   const renderHome = () => (
     <>
