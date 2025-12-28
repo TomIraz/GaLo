@@ -26,7 +26,14 @@ class GoogleSheetsService {
       throw new Error('VITE_GOOGLE_SHEETS_ID no está configurado');
     }
 
-    return `https://docs.google.com/spreadsheets/d/${sheetId}/export?format=csv&gid=${gid}`;
+    // Si sheetId es una URL completa, extraer solo el ID
+    let cleanSheetId = sheetId;
+    const urlMatch = sheetId.match(/\/d\/([a-zA-Z0-9-_]+)/);
+    if (urlMatch) {
+      cleanSheetId = urlMatch[1];
+    }
+
+    return `https://docs.google.com/spreadsheets/d/${cleanSheetId}/export?format=csv&gid=${gid}`;
   }
 
   private parseCsvToPriceData(csv: string): Map<string, PriceData> {
@@ -109,7 +116,8 @@ class GoogleSheetsService {
       const url = this.buildSheetUrl();
       const response = await fetch(url, {
         method: 'GET',
-        cache: 'no-cache'
+        cache: 'no-cache',
+        redirect: 'follow' // Seguir redirects automáticamente
       });
 
       if (!response.ok) {
