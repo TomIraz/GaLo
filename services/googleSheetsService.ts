@@ -34,7 +34,7 @@ class GoogleSheetsService {
     if (publishedMatch) {
       // Para hojas publicadas en la web como CSV
       // Archivo → Compartir → Publicar en la web → CSV
-      return `https://docs.google.com/spreadsheets/d/e/${publishedMatch[0]}/pub?output=csv&gid=${gid}`;
+      return `https://docs.google.com/spreadsheets/d/e/${publishedMatch[0]}/pub?output=csv`;
     }
 
     // Detectar si es una URL regular /d/{ID}/
@@ -45,7 +45,7 @@ class GoogleSheetsService {
 
     // IMPORTANTE: Para que esto funcione, la hoja debe estar "Publicada en la web"
     // Archivo → Compartir → Publicar en la web → Publicar
-    return `https://docs.google.com/spreadsheets/d/${cleanSheetId}/export?format=csv&gid=${gid}`;
+    return `https://docs.google.com/spreadsheets/d/${cleanSheetId}/export?format=csv`;
   }
 
   private parseCsvToPriceData(csv: string): Map<string, PriceData> {
