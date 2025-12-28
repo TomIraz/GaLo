@@ -35,7 +35,7 @@ class GoogleSheetsService {
 
     // IMPORTANTE: Para que esto funcione, la hoja debe estar "Publicada en la web"
     // Archivo → Compartir → Publicar en la web → Publicar
-    return `https://docs.google.com/spreadsheets/d/e/${cleanSheetId}/pubhtml`;
+    return `https://docs.google.com/spreadsheets/d/${cleanSheetId}/gviz/tq?tqx=out:csv&gid=${gid}`;
   }
 
   private parseCsvToPriceData(csv: string): Map<string, PriceData> {
