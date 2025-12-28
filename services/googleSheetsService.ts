@@ -131,46 +131,21 @@ class GoogleSheetsService {
       const response = await fetch(url, {
         method: 'GET',
         cache: 'no-cache',
-        redirect: 'manual' // No seguir redirects automáticamente
+        redirect: 'follow' // Seguir redirects automáticamente
       });
 
       console.log('Response status:', response.status);
+      console.log('Response URL:', response.url);
       console.log('Response type:', response.type);
-
-      // Si hay redirect, seguirlo manualmente
-      if (response.status === 307 || response.status === 301 || response.status === 302) {
-        const redirectUrl = response.headers.get('Location');
-        console.log('Redirect to:', redirectUrl);
-
-        if (redirectUrl) {
-          const redirectResponse = await fetch(redirectUrl, {
-            method: 'GET',
-            cache: 'no-cache'
-          });
-
-          if (!redirectResponse.ok) {
-            throw new Error(`HTTP error after redirect! status: ${redirectResponse.status}`);
-          }
-
-          const csvData = await redirectResponse.text();
-          console.log('CSV data received:', csvData.substring(0, 200));
-          const priceMap = this.parseCsvToPriceData(csvData);
-
-          // Actualizar cachés
-          this.memoryCache = priceMap;
-          this.lastFetchTime = Date.now();
-          this.saveToLocalStorage(priceMap);
-
-          return priceMap;
-        }
-      }
 
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
 
       const csvData = await response.text();
-      console.log('CSV data received:', csvData.substring(0, 200));
+      console.log('CSV data length:', csvData.length);
+      console.log('CSV data preview:', csvData.substring(0, 300));
+
       const priceMap = this.parseCsvToPriceData(csvData);
 
       // Verificar que obtuvimos datos válidos
