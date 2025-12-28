@@ -5,7 +5,7 @@ import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import ProductCard from './components/ProductCard';
 import ProductDetail from './components/ProductDetail';
-import { View, CategoryFilter } from './types';
+import { View, CategoryFilter, Product } from './types';
 import { useContactForm } from './hooks/useContactForm';
 import { useProductPrices } from './hooks/useProductPrices';
 
@@ -550,7 +550,7 @@ const AppContent: React.FC = () => {
           <Route path="/como-comprar" element={renderComoComprar()} />
           <Route path="/donde-estamos" element={renderDondeEstamos()} />
           <Route path="/contacto" element={<ContactoForm />} />
-          <Route path="/producto/:id" element={<ProductDetailPage />} />
+          <Route path="/producto/:id" element={<ProductDetailPage products={PRODUCTS} />} />
         </Routes>
       </main>
 
@@ -581,10 +581,9 @@ const AppContent: React.FC = () => {
   );
 };
 
-const ProductDetailPage = () => {
+const ProductDetailPage = ({ products }: { products: Product[] }) => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { products } = useProductPrices();
 
   const product = products.find(p => p.id === id);
 
