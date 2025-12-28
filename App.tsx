@@ -25,6 +25,14 @@ const AppContent: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [categoryFilter, setCategoryFilter] = useState<CategoryFilter>('Todo');
 
+  // Reset filters when navigating between carteras and accesorios
+  useEffect(() => {
+    if (location.pathname === '/carteras' || location.pathname === '/accesorios') {
+      setCategoryFilter('Todo');
+      setSearchQuery('');
+    }
+  }, [location.pathname]);
+
   const handleNavigate = (view: View) => {
     const routes: Record<View, string> = {
       home: '/',
