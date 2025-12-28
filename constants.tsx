@@ -6,7 +6,8 @@ export const PRODUCTS: Product[] = [
     id: '1',
     name: 'Cartera Eva',
     price: 54500,
-    category: 'Cordón de Polipropileno',
+    category: 'Carteras',
+    subCategory: 'Tote Bag',
     description: 'Nuestra clásica de polipropileno. Resistente, lavable y perfecta para el uso diario. Tejido firme que no pierde la forma.',
     image: '/images/carteras/eva/eva-gris.jpg',
     images: [
@@ -34,7 +35,8 @@ export const PRODUCTS: Product[] = [
     id: '2',
     name: 'Cartera Cami',
     price: 52800,
-    category: 'Cordón de Polipropileno',
+    category: 'Carteras',
+    subCategory: 'Tote Bag',
     description: 'Nuestra clásica de polipropileno. Resistente, lavable y perfecta para el uso diario. Tejido firme que no pierde la forma.',
     image: '/images/carteras/cami/cami-beige.jpg',
     images: [
@@ -62,7 +64,8 @@ export const PRODUCTS: Product[] = [
     id: '101',
     name: 'Mini Isa',
     price: 37000,
-    category: 'Minis',
+    category: 'Carteras',
+    subCategory: 'Bandolera',
     description: 'El mismo diseño de cordón en tamaño compacto. Ideal para llevar solo lo esencial con un toque artesanal.',
     image: '/images/carteras/mini-isa/mini-isa-verde.jpg',
     images: [
@@ -93,7 +96,8 @@ export const PRODUCTS: Product[] = [
     id: '102',
     name: 'Mini Mara',
     price: 36500,
-    category: 'Minis',
+    category: 'Carteras',
+    subCategory: 'Bandolera',
     description: 'Pequeña, ligera y elegante. El color crudo natural resalta la trama del tejido hecho a mano.',
     image: '/images/carteras/mini-mara/mini-mara-beige.jpg',
     images: [
@@ -124,7 +128,8 @@ export const PRODUCTS: Product[] = [
     id: '103',
     name: 'Mini Tokio',
     price: 37000,
-    category: 'Minis',
+    category: 'Carteras',
+    subCategory: 'Bandolera',
     description: 'Pequeña, ligera y elegante. El color crudo natural resalta la trama del tejido hecho a mano.',
     image: '/images/carteras/mini-tokio/mini-tokio-marron.jpg',
     images: [
@@ -155,6 +160,7 @@ export const PRODUCTS: Product[] = [
     name: 'Cinturón',
     price: 18000,
     category: 'Accesorios',
+    subCategory: 'Cinturón',
     description: 'Cinturón elástico tejido manualmente. Hebilla metálica de alta calidad. Disponible en varios colores tierra.',
     image: '/images/accesorios/cinturones/cinturones-fondo-blanco.jpg',
     images: [
@@ -182,6 +188,7 @@ export const PRODUCTS: Product[] = [
     name: 'Porta Celular',
     price: 15000,
     category: 'Accesorios',
+    subCategory: 'Porta Celular',
     description: 'Accesorio de cordón trenzado para llevar el celular con comodidad. Correa larga para usar cruzado.',
     image: '/images/accesorios/porta-celulares/porta-celulares-3.jpg',
     images: [
@@ -211,6 +218,7 @@ export const PRODUCTS: Product[] = [
     name: 'Pulsera Paris',
     price: 4500,
     category: 'Accesorios',
+    subCategory: 'Pulsera',
     description: 'Pulsera artesanal tejida a mano en cordón de polipropileno. Diseño elegante y resistente al agua.',
     image: '/images/accesorios/pulseras/paris/pulsera-paris-negra.jpg',
     images: [
@@ -239,6 +247,7 @@ export const PRODUCTS: Product[] = [
     name: 'Pulsera Asia',
     price: 4500,
     category: 'Accesorios',
+    subCategory: 'Pulsera',
     description: 'Pulsera artesanal tejida a mano en cordón de polipropileno. Diseño elegante y resistente al agua.',
     image: '/images/accesorios/pulseras/asia/pulsera-asia-verde.jpg',
     images: [
@@ -267,6 +276,7 @@ export const PRODUCTS: Product[] = [
     name: 'Pulsera Berlin',
     price: 4500,
     category: 'Accesorios',
+    subCategory: 'Pulsera',
     description: 'Pulsera artesanal tejida a mano en cordón de polipropileno. Diseño elegante y resistente al agua.',
     image: '/images/accesorios/pulseras/berlin/pulsera-berlin-marron.jpg',
     images: [
@@ -295,6 +305,7 @@ export const PRODUCTS: Product[] = [
     name: 'Pulsera India',
     price: 4500,
     category: 'Accesorios',
+    subCategory: 'Pulsera',
     description: 'Pulsera artesanal tejida a mano en cordón de polipropileno. Diseño elegante y resistente al agua.',
     image: '/images/accesorios/pulseras/india/pulsera-india-beige.jpg',
     images: [
@@ -322,7 +333,6 @@ export const PRODUCTS: Product[] = [
 
 export const CATEGORIES: { name: string; id: any }[] = [
   { name: 'Todo', id: null },
-  { name: 'Polipropileno', id: 'Cordón de Polipropileno' },
-  { name: 'Minis', id: 'Minis' },
+  { name: 'Carteras', id: 'Carteras' },
   { name: 'Accesorios', id: 'Accesorios' }
 ];

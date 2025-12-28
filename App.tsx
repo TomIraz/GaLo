@@ -5,7 +5,7 @@ import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import ProductCard from './components/ProductCard';
 import ProductDetail from './components/ProductDetail';
-import { Product, View, MaterialFilter } from './types';
+import { Product, View, CategoryFilter } from './types';
 import { PRODUCTS } from './constants';
 import { useContactForm } from './hooks/useContactForm';
 
@@ -23,7 +23,7 @@ const AppContent: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [searchQuery, setSearchQuery] = useState('');
-  const [materialFilter, setMaterialFilter] = useState<MaterialFilter>('Todo');
+  const [categoryFilter, setCategoryFilter] = useState<CategoryFilter>('Todo');
 
   const handleNavigate = (view: View) => {
     const routes: Record<View, string> = {
@@ -37,19 +37,19 @@ const AppContent: React.FC = () => {
     };
     navigate(routes[view]);
     setSearchQuery('');
-    setMaterialFilter('Todo');
+    setCategoryFilter('Todo');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const filteredProducts = useMemo(() => {
     let base = PRODUCTS;
     if (location.pathname === '/carteras') {
-      base = PRODUCTS.filter(p => p.category !== 'Accesorios');
+      base = PRODUCTS.filter(p => p.category === 'Carteras');
     } else if (location.pathname === '/accesorios') {
       base = PRODUCTS.filter(p => p.category === 'Accesorios');
     }
-    if (materialFilter !== 'Todo') {
-      base = base.filter(p => p.category.includes(materialFilter));
+    if (categoryFilter !== 'Todo') {
+      base = base.filter(p => p.subCategory === categoryFilter);
     }
     if (searchQuery) {
       base = base.filter(p =>
@@ -58,7 +58,7 @@ const AppContent: React.FC = () => {
       );
     }
     return base;
-  }, [location.pathname, searchQuery, materialFilter]);
+  }, [location.pathname, searchQuery, categoryFilter]);
 
   const renderHome = () => (
     <>
@@ -105,15 +105,18 @@ const AppContent: React.FC = () => {
         </div>
 
         <div className="flex items-center gap-6 overflow-x-auto pb-2 md:pb-0 no-scrollbar">
-          {(['Todo', 'Polipropileno', 'Minis'] as MaterialFilter[]).map(mat => (
+          {(location.pathname === '/carteras'
+            ? (['Todo', 'Tote Bag', 'Bandolera'] as CategoryFilter[])
+            : (['Todo', 'Cinturón', 'Porta Celular', 'Pulsera'] as CategoryFilter[])
+          ).map(cat => (
             <button
-              key={mat}
-              onClick={() => setMaterialFilter(mat)}
+              key={cat}
+              onClick={() => setCategoryFilter(cat)}
               className={`text-[10px] font-bold uppercase tracking-widest whitespace-nowrap transition-all pb-1 border-b-2 ${
-                materialFilter === mat ? 'text-[#7a8d4e] border-[#7a8d4e]' : 'text-gray-400 border-transparent hover:text-gray-700'
+                categoryFilter === cat ? 'text-[#7a8d4e] border-[#7a8d4e]' : 'text-gray-400 border-transparent hover:text-gray-700'
               }`}
             >
-              {mat}
+              {cat}
             </button>
           ))}
         </div>
@@ -131,7 +134,7 @@ const AppContent: React.FC = () => {
       ) : (
         <div className="py-20 text-center space-y-4">
           <p className="text-gray-400 italic font-light">No encontramos productos que coincidan con tu búsqueda.</p>
-          <button onClick={() => {setSearchQuery(''); setMaterialFilter('Todo');}} className="text-[#7a8d4e] font-bold text-xs uppercase tracking-widest">Ver todo</button>
+          <button onClick={() => {setSearchQuery(''); setCategoryFilter('Todo');}} className="text-[#7a8d4e] font-bold text-xs uppercase tracking-widest">Ver todo</button>
         </div>
       )}
     </section>
