@@ -52,31 +52,46 @@ class GoogleSheetsService {
     const lines = csv.trim().split('\n');
     const priceMap = new Map<string, PriceData>();
 
+    console.log('Parsing CSV, total lines:', lines.length);
+
     // Saltar la primera línea (headers)
     for (let i = 1; i < lines.length; i++) {
       const line = lines[i].trim();
       if (!line) continue;
 
-      // Parse CSV line (simple split, asumiendo que no hay comas en los valores)
+      // Parse CSV line
       const parts = line.split(',');
-      if (parts.length < 5) continue;
 
-      const productId = parts[0].trim();
-      const price = Number.parseFloat(parts[2].trim());
-      const lastUpdated = parts[3].trim();
-      const active = parts[4].trim().toUpperCase() === 'TRUE';
+      // Google Sheets exportado puede tener columna extra al inicio
+      // Formato: ,product_id,product_name,price,last_updated,active
+      // O formato: product_id,product_name,price,last_updated,active
+      const offset = parts[0] === '' ? 1 : 0;
+
+      if (parts.length < 5 + offset) {
+        console.warn('Skipping line (not enough columns):', line);
+        continue;
+      }
+
+      const productId = parts[0 + offset].trim();
+      const price = Number.parseFloat(parts[2 + offset].trim());
+      const lastUpdated = parts[3 + offset].trim();
+      const active = parts[4 + offset].trim().toUpperCase() === 'TRUE';
 
       // Validar datos
       if (productId && !Number.isNaN(price) && price > 0) {
+        console.log(`Parsed product: ID=${productId}, Price=${price}, Active=${active}`);
         priceMap.set(productId, {
           productId,
           price,
           lastUpdated,
           active
         });
+      } else {
+        console.warn('Skipping line (invalid data):', { productId, price, active });
       }
     }
 
+    console.log('Total products parsed:', priceMap.size);
     return priceMap;
   }
 
