@@ -19,15 +19,20 @@ export function useProductPrices(): UseProductPricesReturn {
   useEffect(() => {
     async function loadPrices() {
       try {
+        console.log('🚀 Starting to load prices...');
         const prices = await googleSheetsService.fetchPrices();
+        console.log('📦 Received prices from service:', prices);
+        console.log('📦 Prices Map size:', prices?.size);
         setPriceData(prices);
+        console.log('✅ Price data set in state');
         setError(null);
       } catch (err) {
-        console.error('Error cargando precios:', err);
+        console.error('❌ Error cargando precios:', err);
         setError(err instanceof Error ? err : new Error('Error desconocido'));
         // No seteamos priceData, quedará null y usaremos precios hardcodeados
       } finally {
         setIsLoading(false);
+        console.log('✅ Loading finished');
       }
     }
 
