@@ -65,7 +65,7 @@ export const PRODUCTS: Product[] = [
     name: 'Mini Isa',
     price: 37000,
     category: 'Carteras',
-    subCategory: 'Bandolera',
+    subCategory: 'Tote Bag',
     description: 'El mismo diseño de cordón en tamaño compacto. Ideal para llevar solo lo esencial con un toque artesanal.',
     image: '/images/carteras/mini-isa/mini-isa-verde.jpg',
     images: [
