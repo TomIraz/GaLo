@@ -1,55 +1,28 @@
-
 import { Product } from './types';
 
-// Para usar tus propias imágenes:
-// 1. Guarda tus fotos en: /root/GaLo/frontend/public/images/carteras/ o /accesorios/
-// 2. Nombra tus archivos descriptivamente (ej: cartera-tote-canela.jpg)
-// 3. Reemplaza las URLs con: /images/carteras/nombre-archivo.jpg
+// ============================================
+// NOTA IMPORTANTE: PRECIOS DE RESPALDO
+// ============================================
+// Los precios en este archivo son de RESPALDO solamente.
+// Los precios actuales se gestionan desde Google Sheets.
+//
+// Para actualizar precios:
+// 1. Ir a Google Sheets (ver README.md para el link)
+// 2. Editar el precio en la columna "price"
+// 3. Guardar - los cambios se reflejan automáticamente en la web
+// ============================================
 
 export const PRODUCTS: Product[] = [
   {
     id: '1',
-    name: 'Cartera Ema Verde Oliva',
-    price: 90.00,
-    category: 'Cordón de Polipropileno',
-    description: 'Diseño amplio de hombro con detalle de cuero en la base de la correa. Textura rica y color vibrante.',
-    image: '/images/carteras/ema-verde.jpg',
-    images: [
-      '/images/carteras/ema-verde.jpg',
-      '/images/carteras/ema-verde.jpg',
-      '/images/carteras/ema-verde.jpg',
-      '/images/carteras/ema-verde.jpg',
-      '/images/carteras/ema-verde.jpg'
-    ],
-    dimensions: {
-      height: '35 cm',
-      width: '40 cm',
-      depth: '12 cm',
-      strap: 'Correa: 60 cm (regulable)'
-    },
-    features: [
-      'Cierre magnético de alta calidad',
-      'Forro interior de tela suave',
-      'Bolsillo interno con cierre',
-      'Correa de cuero 100% genuino',
-      'Tejido 100% a mano',
-      'Lavable con agua fría'
-    ],
-    material: 'Cordón de polipropileno importado',
-    careInstructions: 'Lavar con agua fría y jabón neutro. Dejar secar al aire libre. No usar lavadora.'
-  },
-  {
-    id: '2',
-    name: 'Cartera Eva Gris',
-    price: 75.00,
-    category: 'Cordón de Polipropileno',
+    name: 'Cartera Eva',
+    price: 54500,
+    category: 'Carteras',
+    subCategory: 'Tote Bag',
     description: 'Nuestra clásica de polipropileno. Resistente, lavable y perfecta para el uso diario. Tejido firme que no pierde la forma.',
-    image: '/images/carteras/eva-gris.jpg',
+    image: '/images/carteras/eva/eva-gris.jpg',
     images: [
-      '/images/carteras/eva-gris.jpg',
-      '/images/carteras/eva-gris.jpg',
-      '/images/carteras/eva-gris.jpg',
-      '/images/carteras/eva-gris.jpg'
+      '/images/carteras/eva/eva-gris.jpg'
     ],
     dimensions: {
       height: '32 cm',
@@ -66,20 +39,19 @@ export const PRODUCTS: Product[] = [
       'Material impermeable'
     ],
     material: 'Cordón de polipropileno importado',
-    careInstructions: 'Lavar con agua fría y jabón neutro. Dejar secar al aire libre.'
+    careInstructions: 'Lavar con agua fría y jabón neutro. Dejar secar al aire libre.',
+    availableColors: ['Gris', 'Negro', 'Beige Claro', 'Verde Oliva', 'Bordó', 'Marrón Chocolate', 'Verde Militar', 'Habano', 'Yute', 'Beige Oscuro', 'Mostaza', 'Cobre', 'Azul', 'Vino']
   },
   {
-    id: '3',
-    name: 'Cartera Cami Beige',
-    price: 75.00,
-    category: 'Cordón de Polipropileno',
+    id: '2',
+    name: 'Cartera Cami',
+    price: 52800,
+    category: 'Carteras',
+    subCategory: 'Tote Bag',
     description: 'Nuestra clásica de polipropileno. Resistente, lavable y perfecta para el uso diario. Tejido firme que no pierde la forma.',
-    image: '/images/carteras/cami-beige.jpg',
+    image: '/images/carteras/cami/cami-beige.jpg',
     images: [
-      '/images/carteras/cami-beige.jpg',
-      '/images/carteras/cami-beige.jpg',
-      '/images/carteras/cami-beige.jpg',
-      '/images/carteras/cami-beige.jpg'
+      '/images/carteras/cami/cami-beige.jpg'
     ],
     dimensions: {
       height: '32 cm',
@@ -96,49 +68,21 @@ export const PRODUCTS: Product[] = [
       'Color neutro versátil'
     ],
     material: 'Cordón de polipropileno importado',
-    careInstructions: 'Lavar con agua fría y jabón neutro. Dejar secar al aire libre.'
+    careInstructions: 'Lavar con agua fría y jabón neutro. Dejar secar al aire libre.',
+    availableColors: ['Beige Claro', 'Beige Oscuro', 'Yute', 'Negro', 'Gris', 'Verde Oliva', 'Bordó', 'Marrón Chocolate', 'Verde Militar', 'Habano', 'Mostaza', 'Cobre', 'Azul', 'Vino']
   },
   {
-    id: '5',
-    name: 'Cinturón',
-    price: 25.00,
-    category: 'Accesorios',
-    description: 'Cinturón elástico tejido manualmente. Hebilla metálica de alta calidad. Disponible en varios colores tierra.',
-    image: '/images/accesorios/cinturones-fondo-blanco.jpg',
-    images: [
-      '/images/accesorios/cinturones-fondo-blanco.jpg',
-      '/images/accesorios/cinturones-fondo-blanco.jpg',
-      '/images/accesorios/cinturones-fondo-blanco.jpg'
-    ],
-    dimensions: {
-      height: '4 cm',
-      width: '85 cm',
-      depth: '0.5 cm',
-      strap: 'Ajustable hasta 95 cm'
-    },
-    features: [
-      'Hebilla metálica resistente',
-      'Tejido elástico',
-      'Disponible en varios colores',
-      'Tejido a mano',
-      'Unisex'
-    ],
-    material: 'Cordón de polipropileno elástico',
-    careInstructions: 'Lavar a mano con agua fría. Secar al aire.'
-  },
-  {
-    id: '4',
-    name: 'Mini Gala Terracota',
-    price: 45.00,
-    category: 'Minis',
+    id: '101',
+    name: 'Mini Isa',
+    price: 37000,
+    category: 'Carteras',
+    subCategory: 'Tote Bag',
     description: 'El mismo diseño de cordón en tamaño compacto. Ideal para llevar solo lo esencial con un toque artesanal.',
-    image: '/images/carteras/mini-gala-terracota.jpg',
+    image: '/images/carteras/mini-isa/mini-isa-verde.jpg',
     images: [
-      '/images/carteras/mini-gala-terracota.jpg',
-      '/images/carteras/mini-gala-terracota.jpg',
-      '/images/carteras/mini-gala-terracota.jpg',
-      '/images/carteras/mini-gala-terracota.jpg',
-      '/images/carteras/mini-gala-terracota.jpg'
+      '/images/carteras/mini-isa/mini-isa-verde.jpg',
+      '/images/carteras/mini-isa/mini-isa-verde-2.jpg',
+      '/images/carteras/mini-isa/mini-isa-verde-abierta-1.jpg'
     ],
     isNew: true,
     dimensions: {
@@ -156,48 +100,22 @@ export const PRODUCTS: Product[] = [
       'Ideal para lo esencial'
     ],
     material: 'Cordón de polipropileno importado',
-    careInstructions: 'Lavar con agua fría y jabón neutro. Dejar secar al aire libre.'
+    careInstructions: 'Lavar con agua fría y jabón neutro. Dejar secar al aire libre.',
+    availableColors: ['Cobre', 'Negro', 'Beige Claro', 'Gris', 'Verde Oliva', 'Bordó', 'Marrón Chocolate', 'Verde Militar', 'Habano', 'Yute', 'Beige Oscuro', 'Mostaza', 'Azul', 'Vino']
   },
   {
-    id: '6',
-    name: 'Porta Celular Nudo',
-    price: 30.00,
-    category: 'Accesorios',
-    description: 'Accesorio de cordón trenzado para llevar el celular con comodidad. Correa larga para usar cruzado.',
-    image: '/images/accesorios/porta-celular-nudo.jpg',
-    images: [
-      '/images/accesorios/porta-celular-nudo.jpg',
-      '/images/accesorios/porta-celular-nudo.jpg',
-      '/images/accesorios/porta-celular-nudo.jpg'
-    ],
-    dimensions: {
-      height: '18 cm',
-      width: '11 cm',
-      depth: '2 cm',
-      strap: 'Correa: 130 cm'
-    },
-    features: [
-      'Compartimento para celular',
-      'Cierre con solapa',
-      'Correa larga ajustable',
-      'Diseño cruzado',
-      'Tejido resistente'
-    ],
-    material: 'Cordón de polipropileno trenzado',
-    careInstructions: 'Limpiar con paño húmedo. Lavar a mano si es necesario.'
-  },
-  {
-    id: '7',
-    name: 'Mini Cordón Crudo',
-    price: 45.00,
-    category: 'Minis',
+    id: '102',
+    name: 'Mini Mara',
+    price: 36500,
+    category: 'Carteras',
+    subCategory: 'Bandolera',
     description: 'Pequeña, ligera y elegante. El color crudo natural resalta la trama del tejido hecho a mano.',
-    image: '/images/carteras/mini-cordon-crudo.jpg',
+    image: '/images/carteras/mini-mara/mini-mara-beige.jpg',
     images: [
-      '/images/carteras/mini-cordon-crudo.jpg',
-      '/images/carteras/mini-cordon-crudo.jpg',
-      '/images/carteras/mini-cordon-crudo.jpg',
-      '/images/carteras/mini-cordon-crudo.jpg'
+      '/images/carteras/mini-mara/mini-mara-beige.jpg',
+      '/images/carteras/mini-mara/mini-mara-beige-cerca.jpg',
+      '/images/carteras/mini-mara/mini-mara-beige-cierre.jpg',
+      '/images/carteras/mini-mara/mini-mara-herraje.jpg'
     ],
     dimensions: {
       height: '20 cm',
@@ -214,41 +132,218 @@ export const PRODUCTS: Product[] = [
       'Liviana y práctica'
     ],
     material: 'Cordón de polipropileno natural',
-    careInstructions: 'Lavar con agua fría y jabón neutro. Dejar secar al aire libre.'
+    careInstructions: 'Lavar con agua fría y jabón neutro. Dejar secar al aire libre.',
+    availableColors: ['Yute', 'Beige Claro', 'Beige Oscuro', 'Negro', 'Gris', 'Verde Oliva', 'Bordó', 'Marrón Chocolate', 'Verde Militar', 'Habano', 'Mostaza', 'Cobre', 'Azul', 'Vino']
   },
   {
-    id: '8',
-    name: 'Belt Pack GaLo',
-    price: 55.00,
-    category: 'Accesorios',
-    description: 'Set de cinturón y pequeño charm decorativo para personalizar tus looks.',
-    image: '/images/accesorios/belt-pack-galo.jpg',
+    id: '103',
+    name: 'Mini Tokio',
+    price: 37000,
+    category: 'Carteras',
+    subCategory: 'Bandolera',
+    description: 'Pequeña, ligera y elegante. El color crudo natural resalta la trama del tejido hecho a mano.',
+    image: '/images/carteras/mini-tokio/mini-tokio-marron.jpg',
     images: [
-      '/images/accesorios/belt-pack-galo.jpg',
-      '/images/accesorios/belt-pack-galo.jpg',
-      '/images/accesorios/belt-pack-galo.jpg'
+      '/images/carteras/mini-tokio/mini-tokio-marron.jpg',
+      '/images/carteras/mini-tokio/mini-tokio-marron-arriba.jpg',
+      '/images/carteras/mini-tokio/mini-tokio-marron-herraje.jpg'
+    ],
+    dimensions: {
+      height: '20 cm',
+      width: '22 cm',
+      depth: '8 cm',
+      strap: 'Correa: 120 cm (para usar cruzada)'
+    },
+    features: [
+      'Color natural crudo',
+      'Cierre magnético',
+      'Forro interior',
+      'Correa de cuero',
+      'Diseño minimalista',
+      'Liviana y práctica'
+    ],
+    material: 'Cordón de polipropileno natural',
+    careInstructions: 'Lavar con agua fría y jabón neutro. Dejar secar al aire libre.',
+    availableColors: ['Yute', 'Beige Claro', 'Beige Oscuro', 'Negro', 'Gris', 'Verde Oliva', 'Bordó', 'Marrón Chocolate', 'Verde Militar', 'Habano', 'Mostaza', 'Cobre', 'Azul', 'Vino']
+  },
+  {
+    id: '201',
+    name: 'Cinturón',
+    price: 18000,
+    category: 'Accesorios',
+    subCategory: 'Cinturón',
+    description: 'Cinturón elástico tejido manualmente. Hebilla metálica de alta calidad. Disponible en varios colores tierra.',
+    image: '/images/accesorios/cinturones/cinturones-fondo-blanco.jpg',
+    images: [
+      '/images/accesorios/cinturones/cinturones-fondo-blanco.jpg'
     ],
     dimensions: {
       height: '4 cm',
       width: '85 cm',
-      depth: '1 cm',
-      strap: 'Incluye charm decorativo'
+      depth: '0.5 cm',
+      strap: 'Ajustable hasta 95 cm'
     },
     features: [
-      'Cinturón tejido a mano',
-      'Charm decorativo incluido',
-      'Hebilla metálica',
-      'Set completo',
-      'Diseño exclusivo GaLo'
+      'Hebilla metálica resistente',
+      'Tejido elástico',
+      'Disponible en varios colores',
+      'Tejido a mano',
+      'Unisex'
     ],
-    material: 'Cordón de polipropileno y detalles metálicos',
-    careInstructions: 'Lavar a mano con agua fría. Secar al aire.'
+    material: 'Cordón de polipropileno elástico',
+    careInstructions: 'Lavar a mano con agua fría. Secar al aire.',
+    availableColors: ['Negro', 'Marrón Chocolate', 'Habano', 'Beige Oscuro', 'Gris', 'Verde Militar']
+  },
+  {
+    id: '301',
+    name: 'Porta Celular',
+    price: 15000,
+    category: 'Accesorios',
+    subCategory: 'Porta Celular',
+    description: 'Accesorio de cordón trenzado para llevar el celular con comodidad. Correa larga para usar cruzado.',
+    image: '/images/accesorios/porta-celulares/porta-celulares-3.jpg',
+    images: [
+      '/images/accesorios/porta-celulares/porta-celulares-3.jpg',
+      '/images/accesorios/porta-celulares/porta-celulares-3.jpg',
+      '/images/accesorios/porta-celulares/porta-celulares-3.jpg'
+    ],
+    dimensions: {
+      height: '18 cm',
+      width: '11 cm',
+      depth: '2 cm',
+      strap: 'Correa: 130 cm'
+    },
+    features: [
+      'Compartimento para celular',
+      'Cierre con solapa',
+      'Correa larga ajustable',
+      'Diseño cruzado',
+      'Tejido resistente'
+    ],
+    material: 'Cordón de polipropileno trenzado',
+    careInstructions: 'Limpiar con paño húmedo. Lavar a mano si es necesario.',
+    availableColors: ['Negro', 'Beige Claro', 'Verde Oliva', 'Marrón Chocolate', 'Gris', 'Bordó']
+  },
+  {
+    id: '401',
+    name: 'Pulsera Paris',
+    price: 4500,
+    category: 'Accesorios',
+    subCategory: 'Pulsera',
+    description: 'Pulsera artesanal tejida a mano en cordón de polipropileno. Diseño elegante y resistente al agua.',
+    image: '/images/accesorios/pulseras/paris/pulsera-paris-negra.jpg',
+    images: [
+      '/images/accesorios/pulseras/paris/pulsera-paris-negra.jpg',
+      '/images/accesorios/pulseras/paris/pulsera-paris-negra-2.jpg'
+    ],
+    dimensions: {
+      height: '2 cm',
+      width: '18 cm',
+      depth: '0.5 cm',
+      strap: 'Ajustable'
+    },
+    features: [
+      'Tejido a mano',
+      'Material resistente al agua',
+      'Cierre ajustable',
+      'Diseño minimalista',
+      'Liviana y cómoda'
+    ],
+    material: 'Cordón de polipropileno importado',
+    careInstructions: 'Lavar con agua fría y jabón neutro. Dejar secar al aire libre.',
+    availableColors: ['Negro', 'Beige Claro', 'Verde Oliva', 'Marrón Chocolate', 'Gris', 'Bordó', 'Habano', 'Yute', 'Beige Oscuro', 'Mostaza', 'Cobre', 'Verde Militar', 'Azul', 'Vino']
+  },
+  {
+    id: '402',
+    name: 'Pulsera Asia',
+    price: 4500,
+    category: 'Accesorios',
+    subCategory: 'Pulsera',
+    description: 'Pulsera artesanal tejida a mano en cordón de polipropileno. Diseño elegante y resistente al agua.',
+    image: '/images/accesorios/pulseras/asia/pulsera-asia-verde.jpg',
+    images: [
+      '/images/accesorios/pulseras/asia/pulsera-asia-verde.jpg',
+      '/images/accesorios/pulseras/asia/pulsera-asia-verde-2.jpg'
+    ],
+    dimensions: {
+      height: '2 cm',
+      width: '18 cm',
+      depth: '0.5 cm',
+      strap: 'Ajustable'
+    },
+    features: [
+      'Tejido a mano',
+      'Material resistente al agua',
+      'Cierre ajustable',
+      'Diseño minimalista',
+      'Liviana y cómoda'
+    ],
+    material: 'Cordón de polipropileno importado',
+    careInstructions: 'Lavar con agua fría y jabón neutro. Dejar secar al aire libre.',
+    availableColors: ['Verde Oliva', 'Negro', 'Beige Claro', 'Marrón Chocolate', 'Gris', 'Bordó', 'Habano', 'Yute', 'Beige Oscuro', 'Mostaza', 'Cobre', 'Verde Militar', 'Azul', 'Vino']
+  },
+  {
+    id: '403',
+    name: 'Pulsera Berlin',
+    price: 4500,
+    category: 'Accesorios',
+    subCategory: 'Pulsera',
+    description: 'Pulsera artesanal tejida a mano en cordón de polipropileno. Diseño elegante y resistente al agua.',
+    image: '/images/accesorios/pulseras/berlin/pulsera-berlin-marron.jpg',
+    images: [
+      '/images/accesorios/pulseras/berlin/pulsera-berlin-marron.jpg',
+      '/images/accesorios/pulseras/berlin/pulsera-berlin-marron-2.jpg'
+    ],
+    dimensions: {
+      height: '2 cm',
+      width: '18 cm',
+      depth: '0.5 cm',
+      strap: 'Ajustable'
+    },
+    features: [
+      'Tejido a mano',
+      'Material resistente al agua',
+      'Cierre ajustable',
+      'Diseño minimalista',
+      'Liviana y cómoda'
+    ],
+    material: 'Cordón de polipropileno importado',
+    careInstructions: 'Lavar con agua fría y jabón neutro. Dejar secar al aire libre.',
+    availableColors: ['Marrón Chocolate', 'Negro', 'Beige Claro', 'Verde Oliva', 'Gris', 'Bordó', 'Habano', 'Yute', 'Beige Oscuro', 'Mostaza', 'Cobre', 'Verde Militar', 'Azul', 'Vino']
+  },
+  {
+    id: '404',
+    name: 'Pulsera India',
+    price: 4500,
+    category: 'Accesorios',
+    subCategory: 'Pulsera',
+    description: 'Pulsera artesanal tejida a mano en cordón de polipropileno. Diseño elegante y resistente al agua.',
+    image: '/images/accesorios/pulseras/india/pulsera-india-beige.jpg',
+    images: [
+      '/images/accesorios/pulseras/india/pulsera-india-beige.jpg',
+      '/images/accesorios/pulseras/india/pulsera-india-beige-2.jpg'
+    ],
+    dimensions: {
+      height: '2 cm',
+      width: '18 cm',
+      depth: '0.5 cm',
+      strap: 'Ajustable'
+    },
+    features: [
+      'Tejido a mano',
+      'Material resistente al agua',
+      'Cierre ajustable',
+      'Diseño minimalista',
+      'Liviana y cómoda'
+    ],
+    material: 'Cordón de polipropileno importado',
+    careInstructions: 'Lavar con agua fría y jabón neutro. Dejar secar al aire libre.',
+    availableColors: ['Beige Claro', 'Negro', 'Verde Oliva', 'Marrón Chocolate', 'Gris', 'Bordó', 'Habano', 'Yute', 'Beige Oscuro', 'Mostaza', 'Cobre', 'Verde Militar', 'Azul', 'Vino']
   }
 ];
 
 export const CATEGORIES: { name: string; id: any }[] = [
   { name: 'Todo', id: null },
-  { name: 'Polipropileno', id: 'Cordón de Polipropileno' },
-  { name: 'Minis', id: 'Minis' },
+  { name: 'Carteras', id: 'Carteras' },
   { name: 'Accesorios', id: 'Accesorios' }
 ];

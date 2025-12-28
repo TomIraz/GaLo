@@ -1,49 +1,153 @@
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, useNavigate, useParams, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import ProductCard from './components/ProductCard';
 import ProductDetail from './components/ProductDetail';
-import CartDrawer from './components/CartDrawer';
-import { Product, CartItem, View, MaterialFilter } from './types';
-import { PRODUCTS } from './constants';
+import { View, CategoryFilter, Product } from './types';
 import { useContactForm } from './hooks/useContactForm';
+import { useProductPrices } from './hooks/useProductPrices';
+
+const ScrollToTop: React.FC = () => {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+};
+
+const ContactoForm: React.FC = () => {
+  const { formData, errors, isSubmitting, submitStatus, handleChange, handleSubmit } = useContactForm();
+
+  return (
+    <section className="py-20 max-w-xl mx-auto px-4">
+      <h2 className="text-5xl serif italic text-[#333] mb-8 text-center">Contacto</h2>
+      <p className="text-center text-gray-500 font-light mb-12">¿Tenés alguna duda o querés un pedido personalizado? Escribinos.</p>
+
+      {submitStatus === 'success' && (
+        <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-sm animate-in fade-in slide-in-from-top-2 duration-300">
+          <p className="text-green-700 text-sm text-center font-medium">¡Mensaje enviado con éxito! Te responderemos pronto.</p>
+        </div>
+      )}
+
+      {submitStatus === 'error' && (
+        <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-sm animate-in fade-in slide-in-from-top-2 duration-300">
+          <p className="text-red-700 text-sm text-center font-medium">Error al enviar el mensaje. Por favor, intentá nuevamente.</p>
+        </div>
+      )}
+
+      <form className="space-y-6" onSubmit={handleSubmit}>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <input
+              type="text"
+              name="nombre"
+              placeholder="Nombre"
+              value={formData.nombre}
+              onChange={handleChange}
+              disabled={isSubmitting}
+              aria-label="Nombre"
+              aria-invalid={!!errors.nombre}
+              aria-describedby={errors.nombre ? "nombre-error" : undefined}
+              className={`w-full px-4 py-3 border ${errors.nombre ? 'border-red-300 bg-red-50/50' : 'border-gray-100 bg-gray-50/50'} focus:border-[#7a8d4e] outline-none rounded-sm transition-colors disabled:opacity-50 disabled:cursor-not-allowed`}
+            />
+            {errors.nombre && <p id="nombre-error" className="mt-1 text-xs text-red-600">{errors.nombre}</p>}
+          </div>
+          <div>
+            <input
+              type="email"
+              name="email"
+              placeholder="Email"
+              value={formData.email}
+              onChange={handleChange}
+              disabled={isSubmitting}
+              aria-label="Email"
+              aria-invalid={!!errors.email}
+              aria-describedby={errors.email ? "email-error" : undefined}
+              className={`w-full px-4 py-3 border ${errors.email ? 'border-red-300 bg-red-50/50' : 'border-gray-100 bg-gray-50/50'} focus:border-[#7a8d4e] outline-none rounded-sm transition-colors disabled:opacity-50 disabled:cursor-not-allowed`}
+            />
+            {errors.email && <p id="email-error" className="mt-1 text-xs text-red-600">{errors.email}</p>}
+          </div>
+        </div>
+        <div>
+          <input
+            type="text"
+            name="asunto"
+            placeholder="Asunto"
+            value={formData.asunto}
+            onChange={handleChange}
+            disabled={isSubmitting}
+            aria-label="Asunto"
+            aria-invalid={!!errors.asunto}
+            aria-describedby={errors.asunto ? "asunto-error" : undefined}
+            className={`w-full px-4 py-3 border ${errors.asunto ? 'border-red-300 bg-red-50/50' : 'border-gray-100 bg-gray-50/50'} focus:border-[#7a8d4e] outline-none rounded-sm transition-colors disabled:opacity-50 disabled:cursor-not-allowed`}
+          />
+          {errors.asunto && <p id="asunto-error" className="mt-1 text-xs text-red-600">{errors.asunto}</p>}
+        </div>
+        <div>
+          <textarea
+            rows={5}
+            name="mensaje"
+            placeholder="Mensaje"
+            value={formData.mensaje}
+            onChange={handleChange}
+            disabled={isSubmitting}
+            aria-label="Mensaje"
+            aria-invalid={!!errors.mensaje}
+            aria-describedby={errors.mensaje ? "mensaje-error" : undefined}
+            className={`w-full px-4 py-3 border ${errors.mensaje ? 'border-red-300 bg-red-50/50' : 'border-gray-100 bg-gray-50/50'} focus:border-[#7a8d4e] outline-none rounded-sm transition-colors disabled:opacity-50 disabled:cursor-not-allowed`}
+          />
+          {errors.mensaje && <p id="mensaje-error" className="mt-1 text-xs text-red-600">{errors.mensaje}</p>}
+        </div>
+        <button
+          type="submit"
+          disabled={isSubmitting}
+          className="w-full bg-[#7a8d4e] text-white py-4 font-bold uppercase text-xs tracking-widest hover:bg-[#6b7c43] transition-colors shadow-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-[#7a8d4e] flex items-center justify-center gap-2"
+        >
+          {isSubmitting ? (
+            <>
+              <svg className="animate-spin h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              </svg>
+              Enviando...
+            </>
+          ) : 'Enviar Mensaje'}
+        </button>
+      </form>
+      <div className="mt-12 pt-12 border-t border-gray-100 flex justify-center gap-12">
+         <div className="text-center">
+            <p className="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-1">WhatsApp</p>
+            <p className="text-sm text-gray-800">+54 9 11 0000-0000</p>
+         </div>
+         <div className="text-center">
+            <p className="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-1">Email</p>
+            <p className="text-sm text-gray-800">hola@galoartesanal.com</p>
+         </div>
+      </div>
+    </section>
+  );
+};
 
 const AppContent: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [searchQuery, setSearchQuery] = useState('');
-  const [materialFilter, setMaterialFilter] = useState<MaterialFilter>('Todo');
-  const [cartItems, setCartItems] = useState<CartItem[]>([]);
-  const [isCartOpen, setIsCartOpen] = useState(false);
+  const [categoryFilter, setCategoryFilter] = useState<CategoryFilter>('Todo');
 
-  const addToCart = (product: Product) => {
-    setCartItems(prev => {
-      const existing = prev.find(item => item.id === product.id);
-      if (existing) {
-        return prev.map(item => 
-          item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
-        );
-      }
-      return [...prev, { ...product, quantity: 1 }];
-    });
-    setIsCartOpen(true);
-  };
+  // Load products with prices from Google Sheets
+  const { products: PRODUCTS, isLoading, useFallback } = useProductPrices();
 
-  const updateQuantity = (id: string, delta: number) => {
-    setCartItems(prev => prev.map(item => {
-      if (item.id === id) {
-        const newQty = Math.max(0, item.quantity + delta);
-        return { ...item, quantity: newQty };
-      }
-      return item;
-    }).filter(item => item.quantity > 0));
-  };
-
-  const removeFromCart = (id: string) => {
-    setCartItems(prev => prev.filter(item => item.id !== id));
-  };
+  // Reset filters when navigating between carteras and accesorios
+  useEffect(() => {
+    if (location.pathname === '/carteras' || location.pathname === '/accesorios') {
+      setCategoryFilter('Todo');
+      setSearchQuery('');
+    }
+  }, [location.pathname]);
 
   const handleNavigate = (view: View) => {
     const routes: Record<View, string> = {
@@ -57,19 +161,19 @@ const AppContent: React.FC = () => {
     };
     navigate(routes[view]);
     setSearchQuery('');
-    setMaterialFilter('Todo');
+    setCategoryFilter('Todo');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const filteredProducts = useMemo(() => {
     let base = PRODUCTS;
     if (location.pathname === '/carteras') {
-      base = PRODUCTS.filter(p => p.category !== 'Accesorios');
+      base = PRODUCTS.filter(p => p.category === 'Carteras');
     } else if (location.pathname === '/accesorios') {
       base = PRODUCTS.filter(p => p.category === 'Accesorios');
     }
-    if (materialFilter !== 'Todo') {
-      base = base.filter(p => p.category.includes(materialFilter));
+    if (categoryFilter !== 'Todo') {
+      base = base.filter(p => p.subCategory === categoryFilter);
     }
     if (searchQuery) {
       base = base.filter(p =>
@@ -78,7 +182,7 @@ const AppContent: React.FC = () => {
       );
     }
     return base;
-  }, [location.pathname, searchQuery, materialFilter]);
+  }, [PRODUCTS, location.pathname, searchQuery, categoryFilter]);
 
   const renderHome = () => (
     <>
@@ -93,7 +197,6 @@ const AppContent: React.FC = () => {
             <ProductCard
               key={product.id}
               product={product}
-              onAddToCart={addToCart}
             />
           ))}
         </div>
@@ -126,15 +229,18 @@ const AppContent: React.FC = () => {
         </div>
 
         <div className="flex items-center gap-6 overflow-x-auto pb-2 md:pb-0 no-scrollbar">
-          {(['Todo', 'Polipropileno', 'Minis'] as MaterialFilter[]).map(mat => (
+          {(location.pathname === '/carteras'
+            ? (['Todo', 'Tote Bag', 'Bandolera'] as CategoryFilter[])
+            : (['Todo', 'Cinturón', 'Porta Celular', 'Pulsera'] as CategoryFilter[])
+          ).map(cat => (
             <button
-              key={mat}
-              onClick={() => setMaterialFilter(mat)}
+              key={cat}
+              onClick={() => setCategoryFilter(cat)}
               className={`text-[10px] font-bold uppercase tracking-widest whitespace-nowrap transition-all pb-1 border-b-2 ${
-                materialFilter === mat ? 'text-[#7a8d4e] border-[#7a8d4e]' : 'text-gray-400 border-transparent hover:text-gray-700'
+                categoryFilter === cat ? 'text-[#7a8d4e] border-[#7a8d4e]' : 'text-gray-400 border-transparent hover:text-gray-700'
               }`}
             >
-              {mat}
+              {cat}
             </button>
           ))}
         </div>
@@ -146,14 +252,13 @@ const AppContent: React.FC = () => {
             <ProductCard
               key={product.id}
               product={product}
-              onAddToCart={addToCart}
             />
           ))}
         </div>
       ) : (
         <div className="py-20 text-center space-y-4">
           <p className="text-gray-400 italic font-light">No encontramos productos que coincidan con tu búsqueda.</p>
-          <button onClick={() => {setSearchQuery(''); setMaterialFilter('Todo');}} className="text-[#7a8d4e] font-bold text-xs uppercase tracking-widest">Ver todo</button>
+          <button onClick={() => {setSearchQuery(''); setCategoryFilter('Todo');}} className="text-[#7a8d4e] font-bold text-xs uppercase tracking-widest">Ver todo</button>
         </div>
       )}
     </section>
@@ -174,7 +279,7 @@ const AppContent: React.FC = () => {
       { nombre: 'Verde Militar', color: '#4a5d23', imagen: '/images/colores/verde-militar.jpg' },
       { nombre: 'Azul', color: '#2c5f8d', imagen: '/images/colores/azul.jpg', isNew: true },
       { nombre: 'Gris', color: '#6b6b6b', imagen: '/images/colores/gris.jpg' },
-      { nombre: 'Bordó-Vino', color: '#5d2e46', imagen: '/images/colores/bordo-vino.jpg' }
+      { nombre: 'Vino', color: '#5d2e46', imagen: '/images/colores/bordo-vino.jpg' }
     ];
 
     return (
@@ -265,13 +370,21 @@ const AppContent: React.FC = () => {
 
           <div className="space-y-8">
             <div className="text-center space-y-2">
-              <h3 className="text-3xl serif italic text-[#7a8d4e]">Colores Disponibles</h3>
+              <h3 className="text-3xl serif italic text-[#7a8d4e]">Colores Disponibles Para Carteras</h3>
               <p className="text-gray-500 font-light">Elegí el color que mejor se adapte a tu estilo</p>
             </div>
 
+            <div className="rounded-sm overflow-hidden border border-gray-200 shadow-sm">
+              <img
+                src="/images/menu/colores-carteras.jpg"
+                alt="Colores disponibles para carteras"
+                className="w-full h-auto"
+              />
+            </div>
+
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-              {colores.map((color, idx) => (
-                <div key={idx} className="group relative">
+              {colores.map((color) => (
+                <div key={color.nombre} className="group relative">
                   <div className="aspect-square rounded-sm overflow-hidden border-2 border-gray-200 group-hover:border-[#7a8d4e] transition-all shadow-sm">
                     <div
                       className="w-full h-full flex items-center justify-center text-white font-light text-sm"
@@ -289,6 +402,49 @@ const AppContent: React.FC = () => {
                         Nuevo
                       </span>
                     )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="space-y-8">
+            <div className="text-center space-y-2">
+              <h3 className="text-3xl serif italic text-[#7a8d4e]">Colores Disponibles Para Pulseras</h3>
+              <p className="text-gray-500 font-light">Pulseras artesanales en variedad de colores</p>
+            </div>
+
+            <div className="rounded-sm overflow-hidden border border-gray-200 shadow-sm">
+              <img
+                src="/images/menu/colores-pulseras.jpg"
+                alt="Colores disponibles para pulseras"
+                className="w-full h-auto"
+              />
+            </div>
+
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+              {[
+                { nombre: 'Verde Claro', color: '#2FD63E' },
+                { nombre: 'Suela', color: '#d4a574' },
+                { nombre: 'Visón', color: '#9c8579' },
+                { nombre: 'Buarravino', color: '#4D2F31' },
+                { nombre: 'Verde Oscuro', color: '#2d5016' },
+                { nombre: 'Negro', color: '#1a1a1a' },
+                { nombre: 'Bordó', color: '#722f37' }
+              ].map((color) => (
+                <div key={color.nombre} className="group relative">
+                  <div className="aspect-square rounded-sm overflow-hidden border-2 border-gray-200 group-hover:border-[#7a8d4e] transition-all shadow-sm">
+                    <div
+                      className="w-full h-full flex items-center justify-center text-white font-light text-sm"
+                      style={{ backgroundColor: color.color }}
+                    >
+                      <span className="opacity-0 group-hover:opacity-100 transition-opacity bg-black/50 px-3 py-1 rounded-sm">
+                        {color.nombre}
+                      </span>
+                    </div>
+                  </div>
+                  <div className="mt-2 text-center">
+                    <p className="text-sm font-medium text-gray-700">{color.nombre}</p>
                   </div>
                 </div>
               ))}
@@ -314,8 +470,8 @@ const AppContent: React.FC = () => {
           { step: "02", title: "Revisá tu bolsa", desc: "Hacé click en el ícono de la bolsa para verificar tus productos. Podés sumar o quitar unidades si lo deseás." },
           { step: "03", title: "Finalizá la compra", desc: "Completá tus datos de envío y seleccioná el método de pago que prefieras. Usamos plataformas seguras." },
           { step: "04", title: "¡Listo!", desc: "Una vez confirmado el pago, prepararemos tu GaLo artesanal con mucho amor y te avisaremos cuando esté en camino." }
-        ].map((item, idx) => (
-          <div key={idx} className="flex gap-8 items-start border-l-2 border-gray-100 pl-8 relative">
+        ].map((item) => (
+          <div key={item.step} className="flex gap-8 items-start border-l-2 border-gray-100 pl-8 relative">
              <span className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-[#7a8d4e]"></span>
              <div className="space-y-2">
                 <span className="text-[#7a8d4e] font-bold text-xs tracking-widest uppercase">{item.step}</span>
@@ -363,126 +519,28 @@ const AppContent: React.FC = () => {
     </section>
   );
 
-  const ContactoForm = () => {
-    const { formData, errors, isSubmitting, submitStatus, handleChange, handleSubmit } = useContactForm();
-
+  // Loading state durante primer fetch
+  if (isLoading) {
     return (
-      <section className="py-20 max-w-xl mx-auto px-4">
-        <h2 className="text-5xl serif italic text-[#333] mb-8 text-center">Contacto</h2>
-        <p className="text-center text-gray-500 font-light mb-12">¿Tenés alguna duda o querés un pedido personalizado? Escribinos.</p>
-
-        {submitStatus === 'success' && (
-          <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-sm animate-in fade-in slide-in-from-top-2 duration-300">
-            <p className="text-green-700 text-sm text-center font-medium">¡Mensaje enviado con éxito! Te responderemos pronto.</p>
-          </div>
-        )}
-
-        {submitStatus === 'error' && (
-          <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-sm animate-in fade-in slide-in-from-top-2 duration-300">
-            <p className="text-red-700 text-sm text-center font-medium">Error al enviar el mensaje. Por favor, intentá nuevamente.</p>
-          </div>
-        )}
-
-        <form className="space-y-6" onSubmit={handleSubmit}>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div>
-              <input
-                type="text"
-                name="nombre"
-                placeholder="Nombre"
-                value={formData.nombre}
-                onChange={handleChange}
-                disabled={isSubmitting}
-                aria-label="Nombre"
-                aria-invalid={!!errors.nombre}
-                aria-describedby={errors.nombre ? "nombre-error" : undefined}
-                className={`w-full px-4 py-3 border ${errors.nombre ? 'border-red-300 bg-red-50/50' : 'border-gray-100 bg-gray-50/50'} focus:border-[#7a8d4e] outline-none rounded-sm transition-colors disabled:opacity-50 disabled:cursor-not-allowed`}
-              />
-              {errors.nombre && <p id="nombre-error" className="mt-1 text-xs text-red-600">{errors.nombre}</p>}
-            </div>
-            <div>
-              <input
-                type="email"
-                name="email"
-                placeholder="Email"
-                value={formData.email}
-                onChange={handleChange}
-                disabled={isSubmitting}
-                aria-label="Email"
-                aria-invalid={!!errors.email}
-                aria-describedby={errors.email ? "email-error" : undefined}
-                className={`w-full px-4 py-3 border ${errors.email ? 'border-red-300 bg-red-50/50' : 'border-gray-100 bg-gray-50/50'} focus:border-[#7a8d4e] outline-none rounded-sm transition-colors disabled:opacity-50 disabled:cursor-not-allowed`}
-              />
-              {errors.email && <p id="email-error" className="mt-1 text-xs text-red-600">{errors.email}</p>}
-            </div>
-          </div>
-          <div>
-            <input
-              type="text"
-              name="asunto"
-              placeholder="Asunto"
-              value={formData.asunto}
-              onChange={handleChange}
-              disabled={isSubmitting}
-              aria-label="Asunto"
-              aria-invalid={!!errors.asunto}
-              aria-describedby={errors.asunto ? "asunto-error" : undefined}
-              className={`w-full px-4 py-3 border ${errors.asunto ? 'border-red-300 bg-red-50/50' : 'border-gray-100 bg-gray-50/50'} focus:border-[#7a8d4e] outline-none rounded-sm transition-colors disabled:opacity-50 disabled:cursor-not-allowed`}
-            />
-            {errors.asunto && <p id="asunto-error" className="mt-1 text-xs text-red-600">{errors.asunto}</p>}
-          </div>
-          <div>
-            <textarea
-              rows={5}
-              name="mensaje"
-              placeholder="Mensaje"
-              value={formData.mensaje}
-              onChange={handleChange}
-              disabled={isSubmitting}
-              aria-label="Mensaje"
-              aria-invalid={!!errors.mensaje}
-              aria-describedby={errors.mensaje ? "mensaje-error" : undefined}
-              className={`w-full px-4 py-3 border ${errors.mensaje ? 'border-red-300 bg-red-50/50' : 'border-gray-100 bg-gray-50/50'} focus:border-[#7a8d4e] outline-none rounded-sm transition-colors disabled:opacity-50 disabled:cursor-not-allowed`}
-            />
-            {errors.mensaje && <p id="mensaje-error" className="mt-1 text-xs text-red-600">{errors.mensaje}</p>}
-          </div>
-          <button
-            type="submit"
-            disabled={isSubmitting}
-            className="w-full bg-[#7a8d4e] text-white py-4 font-bold uppercase text-xs tracking-widest hover:bg-[#6b7c43] transition-colors shadow-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-[#7a8d4e] flex items-center justify-center gap-2"
-          >
-            {isSubmitting ? (
-              <>
-                <svg className="animate-spin h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                </svg>
-                Enviando...
-              </>
-            ) : 'Enviar Mensaje'}
-          </button>
-        </form>
-        <div className="mt-12 pt-12 border-t border-gray-100 flex justify-center gap-12">
-           <div className="text-center">
-              <p className="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-1">WhatsApp</p>
-              <p className="text-sm text-gray-800">+54 9 11 0000-0000</p>
-           </div>
-           <div className="text-center">
-              <p className="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-1">Email</p>
-              <p className="text-sm text-gray-800">hola@galoartesanal.com</p>
-           </div>
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center space-y-4">
+          <div className="animate-spin h-12 w-12 border-4 border-[#7a8d4e] border-t-transparent rounded-full mx-auto"></div>
+          <p className="text-gray-500 text-sm">Cargando productos...</p>
         </div>
-      </section>
+      </div>
     );
-  };
+  }
 
   return (
     <div className="min-h-screen">
-      <Navbar
-        cartCount={cartItems.reduce((acc, i) => acc + i.quantity, 0)}
-        onOpenCart={() => setIsCartOpen(true)}
-      />
-      
+      <ScrollToTop />
+      {useFallback && (
+        <div className="bg-yellow-50 border-b border-yellow-200 px-4 py-2 text-center text-sm text-gray-700">
+          Mostrando precios de respaldo. Revisa tu conexión.
+        </div>
+      )}
+      <Navbar />
+
       <main className="animate-in fade-in duration-500">
         <Routes>
           <Route path="/" element={renderHome()} />
@@ -492,15 +550,19 @@ const AppContent: React.FC = () => {
           <Route path="/como-comprar" element={renderComoComprar()} />
           <Route path="/donde-estamos" element={renderDondeEstamos()} />
           <Route path="/contacto" element={<ContactoForm />} />
-          <Route path="/producto/:id" element={<ProductDetailPage />} />
+          <Route path="/producto/:id" element={<ProductDetailPage products={PRODUCTS} />} />
         </Routes>
       </main>
 
       <footer className="bg-white py-24 border-t border-gray-100">
         <div className="max-w-7xl mx-auto px-4 text-center space-y-12">
-          <div className="bg-[#7a8d4e] px-5 py-3 inline-flex items-center justify-center rounded-sm mx-auto shadow-md cursor-pointer" onClick={() => handleNavigate('home')}>
+          <button
+            onClick={() => handleNavigate('home')}
+            className="bg-[#7a8d4e] px-5 py-3 inline-flex items-center justify-center rounded-sm mx-auto shadow-md cursor-pointer hover:bg-[#6b7c43] transition-colors"
+            aria-label="Ir a inicio"
+          >
             <span className="text-white logo-font text-3xl font-medium leading-none flex items-center">GaL<span className="star-o">o</span></span>
-          </div>
+          </button>
           <div className="space-y-4">
             <p className="text-gray-400 text-[11px] tracking-[0.4em] uppercase font-bold">GaLo Artesanal • Argentina</p>
             <div className="flex justify-center gap-10 text-[10px] font-bold text-gray-400 uppercase tracking-widest">
@@ -515,38 +577,15 @@ const AppContent: React.FC = () => {
           <p className="text-[10px] text-gray-300 tracking-wider">© 2024 GaLo. Todos los derechos reservados.</p>
         </div>
       </footer>
-
-      <CartDrawer
-        isOpen={isCartOpen}
-        onClose={() => setIsCartOpen(false)}
-        items={cartItems}
-        onUpdateQuantity={updateQuantity}
-        onRemove={removeFromCart}
-      />
     </div>
   );
 };
 
-const ProductDetailPage = () => {
+const ProductDetailPage = ({ products }: { products: Product[] }) => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const [cartItems, setCartItems] = useState<CartItem[]>([]);
-  const [isCartOpen, setIsCartOpen] = useState(false);
 
-  const product = PRODUCTS.find(p => p.id === id);
-
-  const addToCart = (product: Product) => {
-    setCartItems(prev => {
-      const existing = prev.find(item => item.id === product.id);
-      if (existing) {
-        return prev.map(item =>
-          item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
-        );
-      }
-      return [...prev, { ...product, quantity: 1 }];
-    });
-    setIsCartOpen(true);
-  };
+  const product = products.find(p => p.id === id);
 
   if (!product) {
     return (
@@ -564,7 +603,7 @@ const ProductDetailPage = () => {
     );
   }
 
-  return <ProductDetail product={product} onAddToCart={addToCart} />;
+  return <ProductDetail product={product} />;
 };
 
 const App = () => (
