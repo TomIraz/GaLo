@@ -5,9 +5,9 @@ import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import ProductCard from './components/ProductCard';
 import ProductDetail from './components/ProductDetail';
-import { Product, View, CategoryFilter } from './types';
-import { PRODUCTS } from './constants';
+import { View, CategoryFilter } from './types';
 import { useContactForm } from './hooks/useContactForm';
+import { useProductPrices } from './hooks/useProductPrices';
 
 const ScrollToTop: React.FC = () => {
   const { pathname } = useLocation();
@@ -19,11 +19,127 @@ const ScrollToTop: React.FC = () => {
   return null;
 };
 
+const ContactoForm: React.FC = () => {
+  const { formData, errors, isSubmitting, submitStatus, handleChange, handleSubmit } = useContactForm();
+
+  return (
+    <section className="py-20 max-w-xl mx-auto px-4">
+      <h2 className="text-5xl serif italic text-[#333] mb-8 text-center">Contacto</h2>
+      <p className="text-center text-gray-500 font-light mb-12">¿Tenés alguna duda o querés un pedido personalizado? Escribinos.</p>
+
+      {submitStatus === 'success' && (
+        <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-sm animate-in fade-in slide-in-from-top-2 duration-300">
+          <p className="text-green-700 text-sm text-center font-medium">¡Mensaje enviado con éxito! Te responderemos pronto.</p>
+        </div>
+      )}
+
+      {submitStatus === 'error' && (
+        <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-sm animate-in fade-in slide-in-from-top-2 duration-300">
+          <p className="text-red-700 text-sm text-center font-medium">Error al enviar el mensaje. Por favor, intentá nuevamente.</p>
+        </div>
+      )}
+
+      <form className="space-y-6" onSubmit={handleSubmit}>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <input
+              type="text"
+              name="nombre"
+              placeholder="Nombre"
+              value={formData.nombre}
+              onChange={handleChange}
+              disabled={isSubmitting}
+              aria-label="Nombre"
+              aria-invalid={!!errors.nombre}
+              aria-describedby={errors.nombre ? "nombre-error" : undefined}
+              className={`w-full px-4 py-3 border ${errors.nombre ? 'border-red-300 bg-red-50/50' : 'border-gray-100 bg-gray-50/50'} focus:border-[#7a8d4e] outline-none rounded-sm transition-colors disabled:opacity-50 disabled:cursor-not-allowed`}
+            />
+            {errors.nombre && <p id="nombre-error" className="mt-1 text-xs text-red-600">{errors.nombre}</p>}
+          </div>
+          <div>
+            <input
+              type="email"
+              name="email"
+              placeholder="Email"
+              value={formData.email}
+              onChange={handleChange}
+              disabled={isSubmitting}
+              aria-label="Email"
+              aria-invalid={!!errors.email}
+              aria-describedby={errors.email ? "email-error" : undefined}
+              className={`w-full px-4 py-3 border ${errors.email ? 'border-red-300 bg-red-50/50' : 'border-gray-100 bg-gray-50/50'} focus:border-[#7a8d4e] outline-none rounded-sm transition-colors disabled:opacity-50 disabled:cursor-not-allowed`}
+            />
+            {errors.email && <p id="email-error" className="mt-1 text-xs text-red-600">{errors.email}</p>}
+          </div>
+        </div>
+        <div>
+          <input
+            type="text"
+            name="asunto"
+            placeholder="Asunto"
+            value={formData.asunto}
+            onChange={handleChange}
+            disabled={isSubmitting}
+            aria-label="Asunto"
+            aria-invalid={!!errors.asunto}
+            aria-describedby={errors.asunto ? "asunto-error" : undefined}
+            className={`w-full px-4 py-3 border ${errors.asunto ? 'border-red-300 bg-red-50/50' : 'border-gray-100 bg-gray-50/50'} focus:border-[#7a8d4e] outline-none rounded-sm transition-colors disabled:opacity-50 disabled:cursor-not-allowed`}
+          />
+          {errors.asunto && <p id="asunto-error" className="mt-1 text-xs text-red-600">{errors.asunto}</p>}
+        </div>
+        <div>
+          <textarea
+            rows={5}
+            name="mensaje"
+            placeholder="Mensaje"
+            value={formData.mensaje}
+            onChange={handleChange}
+            disabled={isSubmitting}
+            aria-label="Mensaje"
+            aria-invalid={!!errors.mensaje}
+            aria-describedby={errors.mensaje ? "mensaje-error" : undefined}
+            className={`w-full px-4 py-3 border ${errors.mensaje ? 'border-red-300 bg-red-50/50' : 'border-gray-100 bg-gray-50/50'} focus:border-[#7a8d4e] outline-none rounded-sm transition-colors disabled:opacity-50 disabled:cursor-not-allowed`}
+          />
+          {errors.mensaje && <p id="mensaje-error" className="mt-1 text-xs text-red-600">{errors.mensaje}</p>}
+        </div>
+        <button
+          type="submit"
+          disabled={isSubmitting}
+          className="w-full bg-[#7a8d4e] text-white py-4 font-bold uppercase text-xs tracking-widest hover:bg-[#6b7c43] transition-colors shadow-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-[#7a8d4e] flex items-center justify-center gap-2"
+        >
+          {isSubmitting ? (
+            <>
+              <svg className="animate-spin h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              </svg>
+              Enviando...
+            </>
+          ) : 'Enviar Mensaje'}
+        </button>
+      </form>
+      <div className="mt-12 pt-12 border-t border-gray-100 flex justify-center gap-12">
+         <div className="text-center">
+            <p className="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-1">WhatsApp</p>
+            <p className="text-sm text-gray-800">+54 9 11 0000-0000</p>
+         </div>
+         <div className="text-center">
+            <p className="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-1">Email</p>
+            <p className="text-sm text-gray-800">hola@galoartesanal.com</p>
+         </div>
+      </div>
+    </section>
+  );
+};
+
 const AppContent: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [searchQuery, setSearchQuery] = useState('');
   const [categoryFilter, setCategoryFilter] = useState<CategoryFilter>('Todo');
+
+  // Load products with prices from Google Sheets
+  const { products: PRODUCTS, isLoading, useFallback } = useProductPrices();
 
   // Reset filters when navigating between carteras and accesorios
   useEffect(() => {
@@ -267,8 +383,8 @@ const AppContent: React.FC = () => {
             </div>
 
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-              {colores.map((color, idx) => (
-                <div key={idx} className="group relative">
+              {colores.map((color) => (
+                <div key={color.nombre} className="group relative">
                   <div className="aspect-square rounded-sm overflow-hidden border-2 border-gray-200 group-hover:border-[#7a8d4e] transition-all shadow-sm">
                     <div
                       className="w-full h-full flex items-center justify-center text-white font-light text-sm"
@@ -315,8 +431,8 @@ const AppContent: React.FC = () => {
                 { nombre: 'Verde Oscuro', color: '#2d5016' },
                 { nombre: 'Negro', color: '#1a1a1a' },
                 { nombre: 'Bordó', color: '#722f37' }
-              ].map((color, idx) => (
-                <div key={idx} className="group relative">
+              ].map((color) => (
+                <div key={color.nombre} className="group relative">
                   <div className="aspect-square rounded-sm overflow-hidden border-2 border-gray-200 group-hover:border-[#7a8d4e] transition-all shadow-sm">
                     <div
                       className="w-full h-full flex items-center justify-center text-white font-light text-sm"
@@ -354,8 +470,8 @@ const AppContent: React.FC = () => {
           { step: "02", title: "Revisá tu bolsa", desc: "Hacé click en el ícono de la bolsa para verificar tus productos. Podés sumar o quitar unidades si lo deseás." },
           { step: "03", title: "Finalizá la compra", desc: "Completá tus datos de envío y seleccioná el método de pago que prefieras. Usamos plataformas seguras." },
           { step: "04", title: "¡Listo!", desc: "Una vez confirmado el pago, prepararemos tu GaLo artesanal con mucho amor y te avisaremos cuando esté en camino." }
-        ].map((item, idx) => (
-          <div key={idx} className="flex gap-8 items-start border-l-2 border-gray-100 pl-8 relative">
+        ].map((item) => (
+          <div key={item.step} className="flex gap-8 items-start border-l-2 border-gray-100 pl-8 relative">
              <span className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-[#7a8d4e]"></span>
              <div className="space-y-2">
                 <span className="text-[#7a8d4e] font-bold text-xs tracking-widest uppercase">{item.step}</span>
@@ -403,122 +519,26 @@ const AppContent: React.FC = () => {
     </section>
   );
 
-  const ContactoForm = () => {
-    const { formData, errors, isSubmitting, submitStatus, handleChange, handleSubmit } = useContactForm();
-
+  // Loading state durante primer fetch
+  if (isLoading) {
     return (
-      <section className="py-20 max-w-xl mx-auto px-4">
-        <h2 className="text-5xl serif italic text-[#333] mb-8 text-center">Contacto</h2>
-        <p className="text-center text-gray-500 font-light mb-12">¿Tenés alguna duda o querés un pedido personalizado? Escribinos.</p>
-
-        {submitStatus === 'success' && (
-          <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-sm animate-in fade-in slide-in-from-top-2 duration-300">
-            <p className="text-green-700 text-sm text-center font-medium">¡Mensaje enviado con éxito! Te responderemos pronto.</p>
-          </div>
-        )}
-
-        {submitStatus === 'error' && (
-          <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-sm animate-in fade-in slide-in-from-top-2 duration-300">
-            <p className="text-red-700 text-sm text-center font-medium">Error al enviar el mensaje. Por favor, intentá nuevamente.</p>
-          </div>
-        )}
-
-        <form className="space-y-6" onSubmit={handleSubmit}>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div>
-              <input
-                type="text"
-                name="nombre"
-                placeholder="Nombre"
-                value={formData.nombre}
-                onChange={handleChange}
-                disabled={isSubmitting}
-                aria-label="Nombre"
-                aria-invalid={!!errors.nombre}
-                aria-describedby={errors.nombre ? "nombre-error" : undefined}
-                className={`w-full px-4 py-3 border ${errors.nombre ? 'border-red-300 bg-red-50/50' : 'border-gray-100 bg-gray-50/50'} focus:border-[#7a8d4e] outline-none rounded-sm transition-colors disabled:opacity-50 disabled:cursor-not-allowed`}
-              />
-              {errors.nombre && <p id="nombre-error" className="mt-1 text-xs text-red-600">{errors.nombre}</p>}
-            </div>
-            <div>
-              <input
-                type="email"
-                name="email"
-                placeholder="Email"
-                value={formData.email}
-                onChange={handleChange}
-                disabled={isSubmitting}
-                aria-label="Email"
-                aria-invalid={!!errors.email}
-                aria-describedby={errors.email ? "email-error" : undefined}
-                className={`w-full px-4 py-3 border ${errors.email ? 'border-red-300 bg-red-50/50' : 'border-gray-100 bg-gray-50/50'} focus:border-[#7a8d4e] outline-none rounded-sm transition-colors disabled:opacity-50 disabled:cursor-not-allowed`}
-              />
-              {errors.email && <p id="email-error" className="mt-1 text-xs text-red-600">{errors.email}</p>}
-            </div>
-          </div>
-          <div>
-            <input
-              type="text"
-              name="asunto"
-              placeholder="Asunto"
-              value={formData.asunto}
-              onChange={handleChange}
-              disabled={isSubmitting}
-              aria-label="Asunto"
-              aria-invalid={!!errors.asunto}
-              aria-describedby={errors.asunto ? "asunto-error" : undefined}
-              className={`w-full px-4 py-3 border ${errors.asunto ? 'border-red-300 bg-red-50/50' : 'border-gray-100 bg-gray-50/50'} focus:border-[#7a8d4e] outline-none rounded-sm transition-colors disabled:opacity-50 disabled:cursor-not-allowed`}
-            />
-            {errors.asunto && <p id="asunto-error" className="mt-1 text-xs text-red-600">{errors.asunto}</p>}
-          </div>
-          <div>
-            <textarea
-              rows={5}
-              name="mensaje"
-              placeholder="Mensaje"
-              value={formData.mensaje}
-              onChange={handleChange}
-              disabled={isSubmitting}
-              aria-label="Mensaje"
-              aria-invalid={!!errors.mensaje}
-              aria-describedby={errors.mensaje ? "mensaje-error" : undefined}
-              className={`w-full px-4 py-3 border ${errors.mensaje ? 'border-red-300 bg-red-50/50' : 'border-gray-100 bg-gray-50/50'} focus:border-[#7a8d4e] outline-none rounded-sm transition-colors disabled:opacity-50 disabled:cursor-not-allowed`}
-            />
-            {errors.mensaje && <p id="mensaje-error" className="mt-1 text-xs text-red-600">{errors.mensaje}</p>}
-          </div>
-          <button
-            type="submit"
-            disabled={isSubmitting}
-            className="w-full bg-[#7a8d4e] text-white py-4 font-bold uppercase text-xs tracking-widest hover:bg-[#6b7c43] transition-colors shadow-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-[#7a8d4e] flex items-center justify-center gap-2"
-          >
-            {isSubmitting ? (
-              <>
-                <svg className="animate-spin h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                </svg>
-                Enviando...
-              </>
-            ) : 'Enviar Mensaje'}
-          </button>
-        </form>
-        <div className="mt-12 pt-12 border-t border-gray-100 flex justify-center gap-12">
-           <div className="text-center">
-              <p className="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-1">WhatsApp</p>
-              <p className="text-sm text-gray-800">+54 9 11 0000-0000</p>
-           </div>
-           <div className="text-center">
-              <p className="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-1">Email</p>
-              <p className="text-sm text-gray-800">hola@galoartesanal.com</p>
-           </div>
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center space-y-4">
+          <div className="animate-spin h-12 w-12 border-4 border-[#7a8d4e] border-t-transparent rounded-full mx-auto"></div>
+          <p className="text-gray-500 text-sm">Cargando productos...</p>
         </div>
-      </section>
+      </div>
     );
-  };
+  }
 
   return (
     <div className="min-h-screen">
       <ScrollToTop />
+      {useFallback && (
+        <div className="bg-yellow-50 border-b border-yellow-200 px-4 py-2 text-center text-sm text-gray-700">
+          Mostrando precios de respaldo. Revisa tu conexión.
+        </div>
+      )}
       <Navbar />
 
       <main className="animate-in fade-in duration-500">
@@ -536,9 +556,13 @@ const AppContent: React.FC = () => {
 
       <footer className="bg-white py-24 border-t border-gray-100">
         <div className="max-w-7xl mx-auto px-4 text-center space-y-12">
-          <div className="bg-[#7a8d4e] px-5 py-3 inline-flex items-center justify-center rounded-sm mx-auto shadow-md cursor-pointer" onClick={() => handleNavigate('home')}>
+          <button
+            onClick={() => handleNavigate('home')}
+            className="bg-[#7a8d4e] px-5 py-3 inline-flex items-center justify-center rounded-sm mx-auto shadow-md cursor-pointer hover:bg-[#6b7c43] transition-colors"
+            aria-label="Ir a inicio"
+          >
             <span className="text-white logo-font text-3xl font-medium leading-none flex items-center">GaL<span className="star-o">o</span></span>
-          </div>
+          </button>
           <div className="space-y-4">
             <p className="text-gray-400 text-[11px] tracking-[0.4em] uppercase font-bold">GaLo Artesanal • Argentina</p>
             <div className="flex justify-center gap-10 text-[10px] font-bold text-gray-400 uppercase tracking-widest">
@@ -560,8 +584,9 @@ const AppContent: React.FC = () => {
 const ProductDetailPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const { products } = useProductPrices();
 
-  const product = PRODUCTS.find(p => p.id === id);
+  const product = products.find(p => p.id === id);
 
   if (!product) {
     return (

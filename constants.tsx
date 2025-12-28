@@ -1,5 +1,16 @@
-
 import { Product } from './types';
+
+// ============================================
+// NOTA IMPORTANTE: PRECIOS DE RESPALDO
+// ============================================
+// Los precios en este archivo son de RESPALDO solamente.
+// Los precios actuales se gestionan desde Google Sheets.
+//
+// Para actualizar precios:
+// 1. Ir a Google Sheets (ver README.md para el link)
+// 2. Editar el precio en la columna "price"
+// 3. Guardar - los cambios se reflejan automáticamente en la web
+// ============================================
 
 export const PRODUCTS: Product[] = [
   {
